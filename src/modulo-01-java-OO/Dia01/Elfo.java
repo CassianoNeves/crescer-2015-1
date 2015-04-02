@@ -41,11 +41,12 @@ public class Elfo
         flechas--;
         experiencia++;
     }
-    
+    /*
     public void setNome(String novoNome) {
         nome = novoNome;
     }
-    
+    */
+    //alterei aqui----------------
     /*public void setFlechas(int novaQtdFlechas) {
         if (novaQtdFlechas > flechas) {
             flechas = novaQtdFlechas;
