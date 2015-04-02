@@ -36,17 +36,12 @@ public class Elfo
     /**
      * Atira uma flecha e perde uma unidade.
      */
-    public void atirarFlecha() {
-        //flechas = flechas - 1;
-        flechas--;
-        experiencia++;
-    }
-    
-    public void atirarFlechaEmOrcs( Orcs orc){
+    public void atirarFlecha( Orcs orc ) {
         orc.perdeVida();
         flechas--;
         experiencia++;
     }
+   
     /*
     public void setNome(String novoNome) {
         nome = novoNome;
