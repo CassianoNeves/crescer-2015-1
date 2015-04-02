@@ -47,6 +47,7 @@ public class Elfo
     }
     */
     //alterei aqui----------------
+
     /*public void setFlechas(int novaQtdFlechas) {
         if (novaQtdFlechas > flechas) {
             flechas = novaQtdFlechas;
