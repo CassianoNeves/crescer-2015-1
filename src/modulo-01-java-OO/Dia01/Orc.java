@@ -11,6 +11,8 @@ public class Orc
         //vida = 110;
     }
     //Adicionei aqui
+    //Adicionei aqui
+    
     /**
      * Construtor para objetos da classe Orc
     public Orc()
