@@ -26,31 +26,6 @@ public class ElfoTest
        
     }
     
-    @Test
-    public void varisElfosNacemCom42Flechas(){
-        // Arrange - Montagem dos dados de teste
-        Elfo Elfo1;
-        Elfo Elfo2;
-        Elfo Elfo3;
-        Elfo Elfo4;
-        Elfo Elfo5;
-        // Act - Execução da ação de testes
-        int esperado = 42;
-        Elfo1 = new Elfo("cassiano");
-        Elfo2 = new Elfo("joao");
-        Elfo3 = new Elfo("rosa");
-        Elfo4 = new Elfo("maria");
-        Elfo5 = new Elfo("pedro");
-        // Assert - Verificação
-
-        assertEquals(esperado, Elfo1.getFlechas());
-        assertEquals(esperado, Elfo2.getFlechas());
-        assertEquals(esperado, Elfo3.getFlechas());
-        assertEquals(esperado, Elfo4.getFlechas());
-        assertEquals(esperado, Elfo5.getFlechas());
-       
-    }
-    
      @Test
     public void umElfoNasceQtdDeFlechas(){
         // Arrange - Montagem dos dados de teste
