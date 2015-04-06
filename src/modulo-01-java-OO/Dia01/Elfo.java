@@ -29,6 +29,11 @@ public class Elfo
         this.flechas = flechas;
     }
     
+    /**
+     * Cria um elfo informando nome.
+     * 
+     * @param nome Nome a ser dado para o Elfo.
+     */
     public Elfo(String nome) {
         this.nome = nome;
     }
@@ -46,24 +51,19 @@ public class Elfo
         umOrc.recebeAtaque();
     }
     
-    public int getFlechas(){
+
+    public String getNome() {
+        return this.nome;
+    }
+    
+    public int getFlechas() {
         return this.flechas;
     }
     
-    public String getNome(){
-        return this.nome;
-    }
-   
-    public int getExperiencia(){
+    public int getExperiencia() {
         return this.experiencia;
     }
-    /*
-    public void setNome(String novoNome) {
-        nome = novoNome;
-    }
-    */
-    //alterei aqui----------------
-
+    
     /*public void setFlechas(int novaQtdFlechas) {
         if (novaQtdFlechas > flechas) {
             flechas = novaQtdFlechas;
