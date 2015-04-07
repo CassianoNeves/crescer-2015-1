@@ -162,7 +162,7 @@ public class ElfoTest
         //Act
         String resutadoObtido = elfo.toString();
         //Assert
-        String esperado = "cassiano possui 42 Flechas e 0 níveis de experiencia";
+        String esperado = "cassiano possui 42 flechas e 0 níveis de experiência.";
         
         assertEquals(esperado, resutadoObtido);
     }
@@ -177,8 +177,8 @@ public class ElfoTest
         String resutadoObtidoElfo2 = elfo2.toString();
         
         //Assert
-        String esperadoDoElfo1 = "cassiano possui 42 Flechas e 0 níveis de experiencia";
-        String esperadoDoElfo2 = "joao possui 42 Flechas e 0 níveis de experiencia";
+        String esperadoDoElfo1 = "cassiano possui 42 flechas e 0 níveis de experiência.";
+        String esperadoDoElfo2 = "joao possui 42 flechas e 0 níveis de experiência.";
         
         assertEquals(esperadoDoElfo1, resutadoObtidoElfo1);
         assertEquals(esperadoDoElfo2, resutadoObtidoElfo2);
