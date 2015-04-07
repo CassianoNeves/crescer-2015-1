@@ -5,12 +5,23 @@
  */
 public class Orc
 {
-    private int vida = 110;
+    private int vida;
     private Status status;
-    {
+    private String nome;
+    private int experiencia = 0;
+    
+    public Orc( String nome ){
+        this.nome = nome;
         vida = 110;
         status = status.VIVO;
     }
+    
+    public Orc(){
+        this.nome = "";
+        vida = 110;
+        status = status.VIVO;
+    }
+   
     //Adicionei aqui
     //Adicionei aqui
     
