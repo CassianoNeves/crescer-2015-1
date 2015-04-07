@@ -135,5 +135,36 @@ public class ElfoTest
         
         assertEquals(experienciaEsperada, elfo.getExperiencia());
         assertEquals(flechasEsperadas, elfo.getFlechas());
-    }   
+    } 
+    
+    @Test
+    public void retornoToStringDeUmElfo(){
+        //Arrange
+        Elfo elfo = new Elfo("cassiano");
+        //Act
+        String resutadoObtido = elfo.toString();
+        //Assert
+        String esperado = "cassiano possui 42 Flechas e 0 níveis de experiencia";
+        
+        assertEquals(esperado, resutadoObtido);
+    }
+    
+    @Test
+    public void retornoToStringDeDoisElfos(){
+        //Arrange
+        Elfo elfo1 = new Elfo("cassiano");
+        Elfo elfo2 = new Elfo("joao");
+        //Act
+        String resutadoObtidoElfo1 = elfo1.toString();
+        String resutadoObtidoElfo2 = elfo2.toString();
+        
+        //Assert
+        String esperadoDoElfo1 = "cassiano possui 42 Flechas e 0 níveis de experiencia";
+        String esperadoDoElfo2 = "joao possui 42 Flechas e 0 níveis de experiencia";
+        
+        assertEquals(esperadoDoElfo1, resutadoObtidoElfo1);
+        assertEquals(esperadoDoElfo2, resutadoObtidoElfo2);
+    }
+    
+    
 }
