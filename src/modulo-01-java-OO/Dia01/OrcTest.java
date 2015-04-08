@@ -156,14 +156,24 @@ public class OrcTest
     }
     
     @Test
-    public void umOrcSemItens(){
+    public void adicionadoItesAoOrc(){
         //arrange
         Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 1);
+        ItemDoInventario espada = new ItemDoInventario("espada", 2);
+        ItemDoInventario escudo = new ItemDoInventario("escudo", 3);
         //act
-        ArrayList<ItemDoInventario> resultadoEsperado = 
-            new ArrayList<ItemDoInventario>();
+        orc.addItemParaOrc(machado);
+        orc.addItemParaOrc(espada);
+        orc.addItemParaOrc(escudo);
         //assert
-      
+      ArrayList<ItemDoInventario> resultadoEsperado = 
+            new ArrayList<ItemDoInventario>();
+            
+        resultadoEsperado.add(machado);
+        resultadoEsperado.add(espada);
+        resultadoEsperado.add(escudo);
+            
         assertEquals(resultadoEsperado, orc.getItens());
     }
     
