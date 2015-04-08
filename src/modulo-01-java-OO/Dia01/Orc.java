@@ -91,7 +91,7 @@ public class Orc
         this.status = status;
     }
     
-    public double gerarNumero(){
+    private double gerarNumero(){
         double numero = 0.0;
                numero = (nome.length() > 5 ? numero + 65 : numero - 60);
                numero = (vida > 30 && vida < 60 ? numero * 2 : vida < 20 ? numero * 3 : numero * 1);
@@ -140,5 +140,23 @@ public class Orc
                 item.setQuantidade(quantidade);
             }
         }
+    }
+    
+    public ItemDoInventario getItemComMaiorQuantidade(){
+        
+        ItemDoInventario Item = null;
+        int QuantidadeMaior = 0;
+        int QuantidadeAtual = 0;
+        
+        for( ItemDoInventario itemAtual : this.itens ){
+            
+            QuantidadeAtual = itemAtual.getQuantidade();
+            
+            if( QuantidadeAtual > QuantidadeMaior ){
+                QuantidadeMaior = QuantidadeAtual;
+                Item = itemAtual;
+            }
+        }
+        return Item;
     }
 }

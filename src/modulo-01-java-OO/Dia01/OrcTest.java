@@ -223,8 +223,6 @@ public class OrcTest
         urukhai.tentarSorte();
         // Assert
         
-        assertEquals( 3481, urukhai.gerarNumero(), 0.001);
-        
         ItemDoInventario pocao = urukhai.getItens().get(0);
         ItemDoInventario lanca = urukhai.getItens().get(1);
         assertEquals(1003, pocao.getQuantidade());
@@ -244,6 +242,42 @@ public class OrcTest
         ItemDoInventario lanca = urukhai.getItens().get(1);
         assertEquals(3, pocao.getQuantidade());
         assertEquals(1, lanca.getQuantidade());
+    }
+    
+    @Test
+    public void pegarOMaiorObjetoDeUmOrc(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 2);
+        ItemDoInventario escudo = new ItemDoInventario("escudo", 5);
+        ItemDoInventario espada = new ItemDoInventario("espada", 20);
+        //act
+        orc.addItemParaOrc(machado);
+        orc.addItemParaOrc(escudo);
+        orc.addItemParaOrc(espada);
+        
+        ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
+        
+        //assert
+        assertEquals(espada, resutladoObtido);
+    }
+    
+    @Test
+    public void orcPegarOMaiorObjetoSemQuantidade(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 0);
+        ItemDoInventario escudo = new ItemDoInventario("escudo", 0);
+        ItemDoInventario espada = new ItemDoInventario("espada", 0);
+        //act
+        orc.addItemParaOrc(machado);
+        orc.addItemParaOrc(escudo);
+        orc.addItemParaOrc(espada);
+        
+        ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
+        
+        //assert
+        assertEquals(null, resutladoObtido);
     }
 }
 
