@@ -166,6 +166,33 @@ public class OrcTest
       
         assertEquals(resultadoEsperado, orc.getItens());
     }
+    
+    @Test
+    public void adicionadoItemAoOrcSemNome(){
+        //arrange
+        Orc orc = new Orc();
+        ItemDoInventario machado = new ItemDoInventario("machado", 1);
+        //act
+        orc.addItemParaOrc(machado);
+        //assert
+        ArrayList<ItemDoInventario> resultadoEsperado = 
+            new ArrayList<ItemDoInventario>();
+        resultadoEsperado.add(machado);
+        
+        assertEquals(resultadoEsperado, orc.getItens());
+    }
+    
+    @Test
+    public void umOrcSemNomeESemItens(){
+        //arrange
+        Orc orc = new Orc();
+        //act
+        ArrayList<ItemDoInventario> resultadoEsperado = 
+            new ArrayList<ItemDoInventario>();
+        //assert
+      
+        assertEquals(resultadoEsperado, orc.getItens());
+    }
 }
 
 
