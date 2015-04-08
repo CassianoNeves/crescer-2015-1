@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * Define objetos do tipo Orc
  * 
@@ -9,18 +10,21 @@ public class Orc
     private Status status;
     private String nome;
     private int experiencia = 0;
+    private ArrayList<ItemDoInventario> itens;
    
     
     public Orc( String nome ){
         this.nome = nome;
         vida = 110;
         status = status.VIVO;
+        itens = new ArrayList<ItemDoInventario>();
     }
     
     public Orc(){
         this.nome = "";
         vida = 110;
         status = status.VIVO;
+        itens = new ArrayList<ItemDoInventario>();
     }
    
     //Adicionei aqui
@@ -87,5 +91,17 @@ public class Orc
                numero = (getStatus() == status.FUGINDO ? numero / 2 : getStatus() == status.CACANDO || getStatus() == status.DORMINDO ? numero +1: numero + 0);
                numero = (experiencia%2 == 0 ? Math.pow(3, numero) : experiencia > 2 ? Math.pow(2, numero) : numero );
         return numero;
+    }
+    
+    public void addItemParaOrc( ItemDoInventario item ){
+        this.itens.add(item);
+    }
+    
+    public void removeItemDoOrc( ItemDoInventario item ){
+        this.itens.remove(item);
+    }
+    
+    public ArrayList getItens(){
+        return itens;
     }
 }

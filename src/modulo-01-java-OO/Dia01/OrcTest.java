@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.*;
 
 /**
  * A classe de teste OrcTest.
@@ -67,11 +68,11 @@ public class OrcTest
         
         assertEquals(esperado, resultadoObtido);
     }
-    /*
+    
     @Test
     public void orcRecebeAtaqueDozeVezes() {
         // Arrange - Montagem dos dados de teste
-        Orc umOrc = new Orc();
+        Orc umOrc = new Orc("cassiano");
         // Act
         umOrc.recebeAtaque();
         umOrc.recebeAtaque();
@@ -86,13 +87,13 @@ public class OrcTest
         umOrc.recebeAtaque();
         umOrc.recebeAtaque();
         // Assert - Verificação
-        int esperado = -10;
+        int esperado = 0;
         int resultadoObtido = umOrc.getVida();
         
         assertEquals(esperado, resultadoObtido);
 
     }
-    */
+    
     @Test
     public void orcToStringRetornaVidaPadrao() {
         // Arrange
@@ -115,11 +116,11 @@ public class OrcTest
         String esperado = "Vida atual: 100";
         assertEquals(esperado, resultadoObtido);
     }
-    /*
+    
     @Test
     public void orcToStringAposReceberDozeAtaques() {
         // Arrange - Montagem dos dados de teste
-        Orc umOrc = new Orc();
+        Orc umOrc = new Orc("cassiano");
         // Act
         umOrc.recebeAtaque();
         umOrc.recebeAtaque();
@@ -135,14 +136,36 @@ public class OrcTest
         umOrc.recebeAtaque();
         String resultadoObtido = umOrc.toString();
         // Assert
-        String esperado = "Vida atual: -10";
+        String esperado = "Vida atual: 0";
         assertEquals(esperado, resultadoObtido);
     }
-    */
     
+    @Test
+    public void adicionadoItemAoOrc(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 1);
+        //act
+        orc.addItemParaOrc(machado);
+        //assert
+        ArrayList<ItemDoInventario> resultadoEsperado = 
+            new ArrayList<ItemDoInventario>();
+        resultadoEsperado.add(machado);
+        
+        assertEquals(resultadoEsperado, orc.getItens());
+    }
     
-   
-    
+    @Test
+    public void umOrcSemItens(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        //act
+        ArrayList<ItemDoInventario> resultadoEsperado = 
+            new ArrayList<ItemDoInventario>();
+        //assert
+      
+        assertEquals(resultadoEsperado, orc.getItens());
+    }
 }
 
 
