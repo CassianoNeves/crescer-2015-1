@@ -191,6 +191,60 @@ public class OrcTest
       
         assertEquals(resultadoEsperado, orc.getItens());
     }
+    
+    @Test
+    public void obterNomeDosItemDoOrc(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 1);
+        ItemDoInventario espada = new ItemDoInventario("espada", 1);
+        ItemDoInventario escudo = new ItemDoInventario("escudo", 1);
+        
+        
+        //act
+        orc.addItemParaOrc(machado);
+        orc.addItemParaOrc(espada);
+        orc.addItemParaOrc(escudo);
+        //assert
+        String resultadoEsperado = "machado, espada, escudo";
+        
+        assertEquals(resultadoEsperado, orc.imprimirNomesDosSeusObjetos());
+    }
+    
+    @Test
+    public void orcTentarSorteAumenta1000UnidadesDosItens() {
+        // Arrange
+        Orc urukhai = new Orc();
+        urukhai.setStatus(Status.DORMINDO);
+        urukhai.setExperiencia(3);
+        urukhai.addItemParaOrc(new ItemDoInventario("Poção de mana", 3));
+        urukhai.addItemParaOrc(new ItemDoInventario("Poção Lança", 1));
+        // Act
+        urukhai.tentarSorte();
+        // Assert
+        
+        assertEquals( 3481, urukhai.gerarNumero(), 0.001);
+        
+        ItemDoInventario pocao = urukhai.getItens().get(0);
+        ItemDoInventario lanca = urukhai.getItens().get(1);
+        assertEquals(1003, pocao.getQuantidade());
+        assertEquals(1001, lanca.getQuantidade());
+    }
+    
+    @Test
+    public void orcTentarSorteNaoFazNada() {
+        // Arrange
+        Orc urukhai = new Orc();
+        urukhai.addItemParaOrc(new ItemDoInventario( "Poção de mana", 3 ));
+        urukhai.addItemParaOrc(new ItemDoInventario( "Poção Lança",1 ));
+        // Act
+        urukhai.tentarSorte();
+        // Assert
+        ItemDoInventario pocao = urukhai.getItens().get(0);
+        ItemDoInventario lanca = urukhai.getItens().get(1);
+        assertEquals(3, pocao.getQuantidade());
+        assertEquals(1, lanca.getQuantidade());
+    }
 }
 
 

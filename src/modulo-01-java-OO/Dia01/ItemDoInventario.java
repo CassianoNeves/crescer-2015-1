@@ -26,4 +26,8 @@ public class ItemDoInventario{
     public int getQuantidade(){
         return this.quantidade;
     }
+    
+    public void setQuantidade( int qtd ){
+        this.quantidade = qtd;
+    }
 }

@@ -82,14 +82,21 @@ public class Orc
     public Status getStatus(){
         return status;
     }
-   
     
-    private double gerarNumero(){
+    public void setExperiencia( int novaExpi ){
+        this.experiencia = novaExpi;
+    }
+    
+    public void setStatus( Status status ){
+        this.status = status;
+    }
+    
+    public double gerarNumero(){
         double numero = 0.0;
                numero = (nome.length() > 5 ? numero + 65 : numero - 60);
                numero = (vida > 30 && vida < 60 ? numero * 2 : vida < 20 ? numero * 3 : numero * 1);
                numero = (getStatus() == status.FUGINDO ? numero / 2 : getStatus() == status.CACANDO || getStatus() == status.DORMINDO ? numero +1: numero + 0);
-               numero = (experiencia%2 == 0 ? Math.pow(3, numero) : experiencia > 2 ? Math.pow(2, numero) : numero );
+               numero = (experiencia%2 == 0 ? Math.pow(numero, 3) : experiencia > 2 ? Math.pow(numero, 2) : numero );
         return numero;
     }
     
@@ -101,7 +108,37 @@ public class Orc
         this.itens.remove(item);
     }
     
-    public ArrayList getItens(){
+    public ArrayList<ItemDoInventario> getItens(){
         return itens;
+    }
+    
+    public String imprimirNomesDosSeusObjetos(){
+        
+        ItemDoInventario item;
+        StringBuilder nomes = new StringBuilder();
+       
+        
+        for( int i = 0; i < this.itens.size(); i++ ){
+            item = this.itens.get(i);
+            nomes.append( i == (this.itens.size()-1) ? item.getDescricao() : item.getDescricao() + ", ");
+        }
+        
+        System.out.println(nomes);
+        return nomes.toString();
+    }
+    
+    public void tentarSorte(){
+        if( gerarNumero() == 3481 ){
+   
+            int quantidade = 1000;
+            ItemDoInventario item;
+        
+            for( int i = 0; i < this.itens.size(); i++){
+                quantidade = 1000;
+                item = itens.get(i);
+                quantidade += item.getQuantidade();
+                item.setQuantidade(quantidade);
+            }
+        }
     }
 }
