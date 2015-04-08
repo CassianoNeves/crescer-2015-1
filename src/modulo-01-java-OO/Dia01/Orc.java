@@ -12,7 +12,7 @@ public class Orc
     private int experiencia = 0;
     private ArrayList<ItemDoInventario> itens;
    
-    //aqui
+    //aqui estou
     public Orc( String nome ){
         this.nome = nome;
         vida = 110;
