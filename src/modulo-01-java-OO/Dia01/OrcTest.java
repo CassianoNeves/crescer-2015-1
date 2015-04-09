@@ -279,6 +279,24 @@ public class OrcTest
         //assert
         assertEquals(null, resutladoObtido);
     }
+    
+    @Test
+    public void orcPegarOMaiorObjetoComQuantidadesIguais(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 2);
+        ItemDoInventario escudo = new ItemDoInventario("escudo", 3);
+        ItemDoInventario espada = new ItemDoInventario("espada", 3);
+        //act
+        orc.addItemParaOrc(machado);
+        orc.addItemParaOrc(escudo);
+        orc.addItemParaOrc(espada);
+        
+        ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
+        
+        //assert
+        assertEquals(escudo, resutladoObtido);
+    }
 }
 
 
