@@ -302,6 +302,37 @@ public class OrcTest
         assertEquals(espada, resutladoObtido);
     }
     
+    @Test
+    public void orcOrdenandoSeusItensPorQuantidadeAscendente(){
+        Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 1);
+        ItemDoInventario escudo = new ItemDoInventario("escudo", 2);
+        ItemDoInventario pedra = new ItemDoInventario("pedra", 3);
+        ItemDoInventario espada = new ItemDoInventario("espada", 4);
+        ItemDoInventario nada = new ItemDoInventario("nada", 5);
+        
+        orc.addItemParaOrc(nada);
+        orc.addItemParaOrc(espada);
+        orc.addItemParaOrc(pedra);
+        orc.addItemParaOrc(escudo);
+        orc.addItemParaOrc(machado);
+        
+        Orc orctest = new Orc("jaoao");
+        
+        orctest.addItemParaOrc(machado);
+        orctest.addItemParaOrc(escudo);
+        orctest.addItemParaOrc(pedra);
+        orctest.addItemParaOrc(espada);
+        orctest.addItemParaOrc(nada);
+        
+        
+        orc.ordernarItem();
+        
+        assertEquals(orctest.getItens(), orc.getItens() );
+        
+    }
+    
+    
     
 }
 

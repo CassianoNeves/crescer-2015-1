@@ -159,4 +159,63 @@ public class Orc
         }
         return Item;
     }
+    
+    public ItemDoInventario getItemComMenorQuantidade(){
+        
+        ItemDoInventario Item = null;
+        
+        int QuantidadeAtual = 0;
+        
+        boolean temItens = !this.itens.isEmpty();
+        if(temItens){
+            int QuantidadeMenor = itens.get(0).getQuantidade();
+            for( ItemDoInventario itemAtual : this.itens ){
+                
+                QuantidadeAtual = itemAtual.getQuantidade();
+                
+                if( QuantidadeAtual <= QuantidadeMenor ){
+                    QuantidadeMenor = QuantidadeAtual;
+                    Item = itemAtual;
+                }
+            }
+        }
+        return Item;
+    }
+    
+    public void ordernarItem(){
+        
+        /* ESTA É A PRIMEIRA SOLUÇÃO
+         * ItemDoInventario itemEleito;
+        int i, j;
+           
+        for(i = 1; i < itens.size(); i++){
+            itemEleito = itens.get(i);
+            j = i-1;
+            while((j >= 0) && (itemEleito.getQuantidade() < itens.get(j).getQuantidade())){
+                itens.set(j+1, itens.get(j));
+                j--;
+            }
+            itens.set(j+1, itemEleito);
+            }
+            
+        */
+        
+        ArrayList<ItemDoInventario> itensOrdenados = new ArrayList<>();
+        ItemDoInventario menorItem;
+        int quantidadeDeItens = itens.size();
+        
+        for( int i = 0; i < quantidadeDeItens; i++ ){
+            menorItem = getItemComMenorQuantidade();
+            itensOrdenados.add(menorItem);
+            itens.remove(menorItem);
+        }
+        
+        itens = itensOrdenados;
+    }
 }
+
+
+
+
+
+
