@@ -152,7 +152,7 @@ public class Orc
             
             QuantidadeAtual = itemAtual.getQuantidade();
             
-            if( QuantidadeAtual > QuantidadeMaior ){
+            if( QuantidadeAtual >= QuantidadeMaior ){
                 QuantidadeMaior = QuantidadeAtual;
                 Item = itemAtual;
             }

@@ -245,12 +245,52 @@ public class OrcTest
     }
     
     @Test
+    public void orcPegarOMaiorObjetoSemTerItens(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        //act
+        ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
+        //assert
+        assertEquals(null, resutladoObtido);
+    }
+    
+    @Test
+    public void pegarOMaiorObjetoDeUmOrcCom1Item(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 2);
+        //act
+        orc.addItemParaOrc(machado);
+        ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
+        //assert
+        assertEquals(machado, resutladoObtido);
+    }
+    
+    @Test
     public void pegarOMaiorObjetoDeUmOrc(){
         //arrange
         Orc orc = new Orc("cassiano");
         ItemDoInventario machado = new ItemDoInventario("machado", 2);
         ItemDoInventario escudo = new ItemDoInventario("escudo", 5);
         ItemDoInventario espada = new ItemDoInventario("espada", 20);
+        ItemDoInventario tijolo = new ItemDoInventario("tijolo", 3);
+        ItemDoInventario faca = new ItemDoInventario("faca", 7);
+        //act
+        orc.addItemParaOrc(machado);
+        orc.addItemParaOrc(escudo);
+        orc.addItemParaOrc(espada);
+        ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
+        //assert
+        assertEquals(espada, resutladoObtido);
+    }
+    
+    @Test
+    public void orcPegarOMaiorObjetoComQuantidadesIguais(){
+        //arrange
+        Orc orc = new Orc("cassiano");
+        ItemDoInventario machado = new ItemDoInventario("machado", 3);
+        ItemDoInventario escudo = new ItemDoInventario("escudo", 3);
+        ItemDoInventario espada = new ItemDoInventario("espada", 3);
         //act
         orc.addItemParaOrc(machado);
         orc.addItemParaOrc(escudo);
@@ -262,41 +302,7 @@ public class OrcTest
         assertEquals(espada, resutladoObtido);
     }
     
-    @Test
-    public void orcPegarOMaiorObjetoSemQuantidade(){
-        //arrange
-        Orc orc = new Orc("cassiano");
-        ItemDoInventario machado = new ItemDoInventario("machado", 0);
-        ItemDoInventario escudo = new ItemDoInventario("escudo", 0);
-        ItemDoInventario espada = new ItemDoInventario("espada", 0);
-        //act
-        orc.addItemParaOrc(machado);
-        orc.addItemParaOrc(escudo);
-        orc.addItemParaOrc(espada);
-        
-        ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
-        
-        //assert
-        assertEquals(null, resutladoObtido);
-    }
     
-    @Test
-    public void orcPegarOMaiorObjetoComQuantidadesIguais(){
-        //arrange
-        Orc orc = new Orc("cassiano");
-        ItemDoInventario machado = new ItemDoInventario("machado", 2);
-        ItemDoInventario escudo = new ItemDoInventario("escudo", 3);
-        ItemDoInventario espada = new ItemDoInventario("espada", 3);
-        //act
-        orc.addItemParaOrc(machado);
-        orc.addItemParaOrc(escudo);
-        orc.addItemParaOrc(espada);
-        
-        ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
-        
-        //assert
-        assertEquals(escudo, resutladoObtido);
-    }
 }
 
 
