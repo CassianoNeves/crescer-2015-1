@@ -184,7 +184,7 @@ public class Orc
     
     public void ordernarItem(){
         
-        /* ESTA É A PRIMEIRA SOLUÇÃO
+        /* ESTA É A PRIMEIRA SOLUÇÃO SEM ARRAYLIST AUXILIAR
          * ItemDoInventario itemEleito;
         int i, j;
            
@@ -199,7 +199,7 @@ public class Orc
             }
             
         */
-        
+        //ESSA É A SOLUÇÃO USANDO ARRAYLIST AUXILIAR
         ArrayList<ItemDoInventario> itensOrdenados = new ArrayList<>();
         ItemDoInventario menorItem;
         int quantidadeDeItens = itens.size();
