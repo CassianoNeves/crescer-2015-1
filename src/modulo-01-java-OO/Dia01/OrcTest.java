@@ -146,7 +146,7 @@ public class OrcTest
         Orc orc = new Orc("cassiano");
         ItemDoInventario machado = new ItemDoInventario("machado", 1);
         //act
-        orc.addItemParaOrc(machado);
+        orc.addItem(machado);
         //assert
         ArrayList<ItemDoInventario> resultadoEsperado = 
             new ArrayList<ItemDoInventario>();
@@ -163,9 +163,9 @@ public class OrcTest
         ItemDoInventario espada = new ItemDoInventario("espada", 2);
         ItemDoInventario escudo = new ItemDoInventario("escudo", 3);
         //act
-        orc.addItemParaOrc(machado);
-        orc.addItemParaOrc(espada);
-        orc.addItemParaOrc(escudo);
+        orc.addItem(machado);
+        orc.addItem(espada);
+        orc.addItem(escudo);
         //assert
       ArrayList<ItemDoInventario> resultadoEsperado = 
             new ArrayList<ItemDoInventario>();
@@ -185,8 +185,8 @@ public class OrcTest
         ArrayList<ItemDoInventario> resultadoEsperado = 
             new ArrayList<ItemDoInventario>();
         //act
-        orc.addItemParaOrc(machado);
-        orc.removeItemDoOrc(machado);
+        orc.addItem(machado);
+        orc.removeItem(machado);
         //assert
       
         assertEquals(resultadoEsperado, orc.getItens());
@@ -202,9 +202,9 @@ public class OrcTest
         
         
         //act
-        orc.addItemParaOrc(machado);
-        orc.addItemParaOrc(espada);
-        orc.addItemParaOrc(escudo);
+        orc.addItem(machado);
+        orc.addItem(espada);
+        orc.addItem(escudo);
         //assert
         String resultadoEsperado = "machado, espada, escudo";
         
@@ -217,8 +217,8 @@ public class OrcTest
         Orc urukhai = new Orc();
         urukhai.setStatus(Status.DORMINDO);
         urukhai.setExperiencia(3);
-        urukhai.addItemParaOrc(new ItemDoInventario("Poção de mana", 3));
-        urukhai.addItemParaOrc(new ItemDoInventario("Poção Lança", 1));
+        urukhai.addItem(new ItemDoInventario("Poção de mana", 3));
+        urukhai.addItem(new ItemDoInventario("Poção Lança", 1));
         // Act
         urukhai.tentarSorte();
         // Assert
@@ -233,8 +233,8 @@ public class OrcTest
     public void orcTentarSorteNaoFazNada() {
         // Arrange
         Orc urukhai = new Orc();
-        urukhai.addItemParaOrc(new ItemDoInventario( "Poção de mana", 3 ));
-        urukhai.addItemParaOrc(new ItemDoInventario( "Poção Lança",1 ));
+        urukhai.addItem(new ItemDoInventario( "Poção de mana", 3 ));
+        urukhai.addItem(new ItemDoInventario( "Poção Lança",1 ));
         // Act
         urukhai.tentarSorte();
         // Assert
@@ -260,7 +260,7 @@ public class OrcTest
         Orc orc = new Orc("cassiano");
         ItemDoInventario machado = new ItemDoInventario("machado", 2);
         //act
-        orc.addItemParaOrc(machado);
+        orc.addItem(machado);
         ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
         //assert
         assertEquals(machado, resutladoObtido);
@@ -276,9 +276,9 @@ public class OrcTest
         ItemDoInventario tijolo = new ItemDoInventario("tijolo", 3);
         ItemDoInventario faca = new ItemDoInventario("faca", 7);
         //act
-        orc.addItemParaOrc(machado);
-        orc.addItemParaOrc(escudo);
-        orc.addItemParaOrc(espada);
+        orc.addItem(machado);
+        orc.addItem(escudo);
+        orc.addItem(espada);
         ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
         //assert
         assertEquals(espada, resutladoObtido);
@@ -292,9 +292,9 @@ public class OrcTest
         ItemDoInventario escudo = new ItemDoInventario("escudo", 3);
         ItemDoInventario espada = new ItemDoInventario("espada", 3);
         //act
-        orc.addItemParaOrc(machado);
-        orc.addItemParaOrc(escudo);
-        orc.addItemParaOrc(espada);
+        orc.addItem(machado);
+        orc.addItem(escudo);
+        orc.addItem(espada);
         
         ItemDoInventario resutladoObtido = orc.getItemComMaiorQuantidade();
         
@@ -320,7 +320,7 @@ public class OrcTest
         Orc orc = new Orc("cassiano");
         ItemDoInventario machado = new ItemDoInventario("machado", 1);
         //act 
-        orc.addItemParaOrc(machado);
+        orc.addItem(machado);
         orc.ordernarItem();
         //assert
         ArrayList<ItemDoInventario> resultadoEsperado = new ArrayList<>();
@@ -339,20 +339,20 @@ public class OrcTest
         ItemDoInventario espada = new ItemDoInventario("espada", 4);
         ItemDoInventario nada = new ItemDoInventario("nada", 5);
         //act
-        orc.addItemParaOrc(nada);
-        orc.addItemParaOrc(espada);
-        orc.addItemParaOrc(pedra);
-        orc.addItemParaOrc(escudo);
-        orc.addItemParaOrc(machado);
+        orc.addItem(nada);
+        orc.addItem(espada);
+        orc.addItem(pedra);
+        orc.addItem(escudo);
+        orc.addItem(machado);
         orc.ordernarItem();
         //assert
         Orc orctest = new Orc("jaoao");
         
-        orctest.addItemParaOrc(machado);
-        orctest.addItemParaOrc(escudo);
-        orctest.addItemParaOrc(pedra);
-        orctest.addItemParaOrc(espada);
-        orctest.addItemParaOrc(nada);
+        orctest.addItem(machado);
+        orctest.addItem(escudo);
+        orctest.addItem(pedra);
+        orctest.addItem(espada);
+        orctest.addItem(nada);
 
         
         
@@ -370,20 +370,20 @@ public class OrcTest
         ItemDoInventario espada = new ItemDoInventario("espada", 4);
         ItemDoInventario nada = new ItemDoInventario("nada", 5);
         //act
-        orc.addItemParaOrc(nada);
-        orc.addItemParaOrc(espada);
-        orc.addItemParaOrc(pedra);
-        orc.addItemParaOrc(escudo);
-        orc.addItemParaOrc(machado);
+        orc.addItem(nada);
+        orc.addItem(espada);
+        orc.addItem(pedra);
+        orc.addItem(escudo);
+        orc.addItem(machado);
         orc.ordernarItem();
         //assert
         Orc orctest = new Orc("jaoao");
         
-        orctest.addItemParaOrc(pedra);
-        orctest.addItemParaOrc(machado);
-        orctest.addItemParaOrc(escudo);
-        orctest.addItemParaOrc(espada);
-        orctest.addItemParaOrc(nada);
+        orctest.addItem(pedra);
+        orctest.addItem(machado);
+        orctest.addItem(escudo);
+        orctest.addItem(espada);
+        orctest.addItem(nada);
 
         
         

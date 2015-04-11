@@ -4,27 +4,17 @@ import java.util.*;
  * 
  * @author CWI Software
  */
-public class Orc
+public class Orc extends Personagem
 {
-    private int vida;
-    private Status status;
-    private String nome;
-    private int experiencia = 0;
-    private ArrayList<ItemDoInventario> itens;
-   
     //aqui estou 44
     public Orc( String nome ){
-        this.nome = nome;
-        vida = 110;
+        super( 110, nome );
         status = status.VIVO;
         itens = new ArrayList<ItemDoInventario>();
     }
     
     public Orc(){
-        this.nome = "";
-        vida = 110;
-        status = status.VIVO;
-        itens = new ArrayList<ItemDoInventario>();
+        this("");
     }
    
     //Adicionei aqui
@@ -64,10 +54,6 @@ public class Orc
         }
     }
     
-    public int getVida() {
-        return this.vida;
-    }
-    
     /**
      * Imprime a vida atual do Orc.
      * 
@@ -79,18 +65,6 @@ public class Orc
         return "Vida atual: " + this.vida;
     }
     
-    public Status getStatus(){
-        return status;
-    }
-    
-    public void setExperiencia( int novaExpi ){
-        this.experiencia = novaExpi;
-    }
-    
-    public void setStatus( Status status ){
-        this.status = status;
-    }
-    
     private double gerarNumero(){
         double numero = 0.0;
                numero = (nome.length() > 5 ? numero + 65 : numero - 60);
@@ -98,18 +72,6 @@ public class Orc
                numero = (getStatus() == status.FUGINDO ? numero / 2 : getStatus() == status.CACANDO || getStatus() == status.DORMINDO ? numero +1: numero + 0);
                numero = (experiencia%2 == 0 ? Math.pow(numero, 3) : experiencia > 2 ? Math.pow(numero, 2) : numero );
         return numero;
-    }
-    
-    public void addItemParaOrc( ItemDoInventario item ){
-        this.itens.add(item);
-    }
-    
-    public void removeItemDoOrc( ItemDoInventario item ){
-        this.itens.remove(item);
-    }
-    
-    public ArrayList<ItemDoInventario> getItens(){
-        return itens;
     }
     
     public String imprimirNomesDosSeusObjetos(){
@@ -140,77 +102,6 @@ public class Orc
                 item.setQuantidade(quantidade);
             }
         }
-    }
-    
-    public ItemDoInventario getItemComMaiorQuantidade(){
-        
-        ItemDoInventario Item = null;
-        int QuantidadeMaior = 0;
-        int QuantidadeAtual = 0;
-        
-        for( ItemDoInventario itemAtual : this.itens ){
-            
-            QuantidadeAtual = itemAtual.getQuantidade();
-            
-            if( QuantidadeAtual >= QuantidadeMaior ){
-                QuantidadeMaior = QuantidadeAtual;
-                Item = itemAtual;
-            }
-        }
-        return Item;
-    }
-    
-    public ItemDoInventario getItemComMenorQuantidade(){
-        
-        ItemDoInventario Item = null;
-        
-        int QuantidadeAtual = 0;
-        
-        boolean temItens = !this.itens.isEmpty();
-        if(temItens){
-            int QuantidadeMenor = itens.get(0).getQuantidade();
-            for( ItemDoInventario itemAtual : this.itens ){
-                
-                QuantidadeAtual = itemAtual.getQuantidade();
-                
-                if( QuantidadeAtual <= QuantidadeMenor ){
-                    QuantidadeMenor = QuantidadeAtual;
-                    Item = itemAtual;
-                }
-            }
-        }
-        return Item;
-    }
-    
-    public void ordernarItem(){
-        
-        /* ESTA É A PRIMEIRA SOLUÇÃO SEM ARRAYLIST AUXILIAR
-         * ItemDoInventario itemEleito;
-        int i, j;
-           
-        for(i = 1; i < itens.size(); i++){
-            itemEleito = itens.get(i);
-            j = i-1;
-            while((j >= 0) && (itemEleito.getQuantidade() < itens.get(j).getQuantidade())){
-                itens.set(j+1, itens.get(j));
-                j--;
-            }
-            itens.set(j+1, itemEleito);
-            }
-            
-        */
-        //ESSA É A SOLUÇÃO USANDO ARRAYLIST AUXILIAR
-        ArrayList<ItemDoInventario> itensOrdenados = new ArrayList<>();
-        ItemDoInventario menorItem;
-        int quantidadeDeItens = itens.size();
-        
-        for( int i = 0; i < quantidadeDeItens; i++ ){
-            menorItem = getItemComMenorQuantidade();
-            itensOrdenados.add(menorItem);
-            itens.remove(menorItem);
-        }
-        
-        itens = itensOrdenados;
     }
 }
 

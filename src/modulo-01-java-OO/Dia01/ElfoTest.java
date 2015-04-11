@@ -183,6 +183,4 @@ public class ElfoTest
         assertEquals(esperadoDoElfo1, resutadoObtidoElfo1);
         assertEquals(esperadoDoElfo2, resutadoObtidoElfo2);
     }
-    
-    
 }
