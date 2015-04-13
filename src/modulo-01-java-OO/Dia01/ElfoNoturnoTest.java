@@ -81,5 +81,32 @@ public class ElfoNoturnoTest
         assertEquals(resultadoEsperado, elfoNoturno.getItens());
     }
     
+    @Test
+    public void elfoNoturnoPerde5PorcentoDaVidaQuandoAtiraFlechas(){
+        //arrange
+        ElfoNoturno elfo = new ElfoNoturno("cassiano");
+        Orc orc = new Orc();
+        //act
+        elfo.atirarFlecha( orc );
+        //assert
+        assertEquals(95, elfo.getVida());
+    }
+    
+    @Test
+    public void elfoNoturnoPerdeAtiraFlechaAtéMorrer(){
+        //arrange
+        ElfoNoturno elfo = new ElfoNoturno("cassiano");
+        Orc orc = new Orc();
+        //act
+        for( int i = 0; elfo.getVida() > 0; i++ ){
+            elfo.atirarFlecha( orc );
+            System.out.println(i);
+        }
+
+        
+        
+        //assert
+        assertEquals(0, elfo.getVida());
+    }
     
 }

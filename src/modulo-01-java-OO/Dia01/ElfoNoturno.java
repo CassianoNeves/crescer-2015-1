@@ -21,6 +21,15 @@ public class ElfoNoturno extends Elfo{
         super.atirarFlecha( umOrc );
         experiencia += 2;
         
-        this.vida = (int) (vida - (vida * 0.05));
+        if(getVida() >= 0 ){
+            this.vida = (int) (vida - (vida * 0.05));
+        }
+        
+        if(getVida() == 0 ){
+            status = Status.MORTO;
+        }
+        
     }
+    
+    
 }
