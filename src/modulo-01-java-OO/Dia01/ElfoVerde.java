@@ -17,12 +17,14 @@ public class ElfoVerde extends Elfo{
     
     public void atirarFlecha(Orc umOrc) {
         //flechas = flechas - 1;
-        flechas--;
-        experiencia += 2;
-        umOrc.recebeAtaque();
+        super.atirarFlecha( umOrc );
+        experiencia ++;
+
     }
     
     public void addItem( ItemDoInventario item ){
+        
+        
         if( item.getDescricao() == "Espada de aço valariano" || item.getDescricao() == "Arco e Flecha de vidro"){
             itens.add( item );
         }
