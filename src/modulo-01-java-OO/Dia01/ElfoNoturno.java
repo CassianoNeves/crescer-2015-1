@@ -22,10 +22,10 @@ public class ElfoNoturno extends Elfo{
         experiencia += 2;
         
         if(getVida() >= 0 ){
-            this.vida = (int) (vida - (vida * 0.05));
+            this.vida = (vida - (vida * 0.05));
         }
         
-        if(getVida() == 0 ){
+        if(getVida() < 1 ){
             status = Status.MORTO;
         }
         

@@ -13,6 +13,8 @@ import java.util.*;
  */
 public class ElfoNoturnoTest
 {
+    private final double DELTA = 0.005;
+    
    @Test
     public void elfoAtiraFlechaEmUmOrc() {
         // Arrange
@@ -89,7 +91,7 @@ public class ElfoNoturnoTest
         //act
         elfo.atirarFlecha( orc );
         //assert
-        assertEquals(95, elfo.getVida());
+        assertEquals(95.0, elfo.getVida(), DELTA);
     }
     
     @Test
@@ -97,16 +99,14 @@ public class ElfoNoturnoTest
         //arrange
         ElfoNoturno elfo = new ElfoNoturno("cassiano");
         Orc orc = new Orc();
+        Status status = Status.MORTO;
         //act
-        for( int i = 0; elfo.getVida() > 0; i++ ){
+        for( int i = 0; elfo.getVida() > 1; i++ ){
             elfo.atirarFlecha( orc );
-            System.out.println(i);
+            //System.out.println(i);
         }
-
-        
-        
         //assert
-        assertEquals(0, elfo.getVida());
-    }
-    
+        assertEquals(0.988, elfo.getVida(), DELTA);
+        assertEquals(status, elfo.getStatus());
+    } 
 }
