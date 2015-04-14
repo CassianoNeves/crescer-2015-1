@@ -9,9 +9,11 @@ public class Elfo extends Personagem
 {
     // Versão correção do tema!!
     protected int flechas = 42;
-
-    // type initializer
     
+    // type initializer
+    {
+        ContaElfos.contarElfos();
+    }
     /**
      * Cria objetos Elfo
      * 
@@ -23,6 +25,7 @@ public class Elfo extends Personagem
         this(umNome);
         // this.nome = nome;
         this.flechas = flechas;
+        
     }
     
     /**
