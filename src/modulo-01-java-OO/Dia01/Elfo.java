@@ -119,8 +119,6 @@ public class Elfo extends Personagem
         builder.append(textoNiveis);
         builder.append(" de experiência.");*/
     }
-
-    
     
     
 }
