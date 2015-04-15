@@ -13,9 +13,12 @@ public class ExercitoDeElfos{
         return alistados;
     }
     
-    public void alistarElfo( Elfo elfo ){
+    public void alistarElfo( Elfo elfo ) throws NaoPodeAlistarException{
         if( elfo instanceof ElfoVerde || elfo instanceof ElfoNoturno ){
-            alistados.put(elfo.getNome(), elfo );
+            alistados.put( elfo.getNome(), elfo );
+        }
+        else{
+            throw new NaoPodeAlistarException();
         }
         
         
