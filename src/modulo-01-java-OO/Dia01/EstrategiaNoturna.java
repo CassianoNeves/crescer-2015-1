@@ -6,6 +6,8 @@ public class EstrategiaNoturna implements EstrategiaDeAtaque
     public void atacarOrcs(ArrayList<Elfo> elfos, ArrayList<Orc> orcs) {
         System.out.println("Super estratégia noturna.. ATIVAR!!!");
         
+        ordemAtaque = elfos;
+        
         int qtdAtaques = elfos.size() * orcs.size();
         int limiteElfosNoturnos = (int)(qtdAtaques * 0.3);
         int qtdElfosNoturnosQueJáAtacaram = 0;
@@ -17,7 +19,6 @@ public class EstrategiaNoturna implements EstrategiaDeAtaque
                 if (qtdElfosNoturnosQueJáAtacaram >= limiteElfosNoturnos)
                     continue;
                 qtdElfosNoturnosQueJáAtacaram++;
-                ordemAtaque.add(elfoQueVaiAtacar);
             }
             
             for (Orc orc : orcs) {

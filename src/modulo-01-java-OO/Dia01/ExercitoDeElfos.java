@@ -9,7 +9,7 @@ public class ExercitoDeElfos
 {
     private HashMap<String, Elfo> exercito = new HashMap<>();
     private HashMap<Status, ArrayList<Elfo>> porStatus = new HashMap<>();
-    private EstrategiaDeAtaque estrategia = new EstrategiaNormal();
+    private EstrategiaDeAtaque estrategia = new EstrategiaNoturna();
     
     public HashMap<String, Elfo> getExercito() {
         return this.exercito;
