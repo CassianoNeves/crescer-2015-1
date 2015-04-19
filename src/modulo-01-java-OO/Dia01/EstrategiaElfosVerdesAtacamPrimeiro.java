@@ -10,9 +10,8 @@ public class EstrategiaElfosVerdesAtacamPrimeiro implements EstrategiaDeAtaque{
     private ArrayList<Elfo> ordemAtaque = new ArrayList<>();
     
     public void atacarOrcs(ArrayList<Elfo> elfos, ArrayList<Orc> orcs){
-        ordernarElfos( elfos );
         
-       
+        ordernarElfos( elfos );
         
         for( Elfo elfo : elfos ){
             ordemAtaque.add(elfo);
