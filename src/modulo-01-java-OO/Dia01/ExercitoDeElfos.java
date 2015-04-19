@@ -80,7 +80,6 @@ public class ExercitoDeElfos
     public void atacarHorda(ArrayList<Orc> orcs) {
         
         ArrayList<Elfo> elfosQueVãoPraPeleia = buscar(Status.VIVO);
-        System.out.println(elfosQueVãoPraPeleia.size());
         estrategia.atacarOrcs(elfosQueVãoPraPeleia, orcs);
     }
     
