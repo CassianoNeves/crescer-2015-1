@@ -9,10 +9,11 @@ public class Elfo extends Personagem
 {
     // Versão correção do tema!!
     protected int flechas = 42;
+    private static int quantidadeDeElfos = 0;
     
     // type initializer
     {
-        ContaElfos.contarElfos();
+        contarElfos();
     }
     /**
      * Cria objetos Elfo
@@ -119,6 +120,18 @@ public class Elfo extends Personagem
         builder.append(" ");
         builder.append(textoNiveis);
         builder.append(" de experiência.");*/
+    }
+    
+     public static void contarElfos() {
+        quantidadeDeElfos++;
+    }
+    
+    public static int getQuantidadeElfos(){
+        return quantidadeDeElfos;
+    }
+    
+    public static void resetarQuantidadeElfos(){
+        quantidadeDeElfos = 0;
     }
     
     
