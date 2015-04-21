@@ -9,6 +9,7 @@ public class ExercitoDeElfos{
     
     private HashMap<String, Elfo> exercito = new HashMap<>();
     private HashMap<Status, ArrayList<Elfo>> exercitoAgrupado = new HashMap<>();
+    private EstrategiaDeAtaque estrategia = new EstrategiaNoturna();
     
     
     public void alistar( Elfo elfo ){
@@ -53,5 +54,14 @@ public class ExercitoDeElfos{
     public HashMap<Status, ArrayList<Elfo>> getExercitoAgrupado(){
         agruparExercito();
         return exercitoAgrupado;
+    }
+    
+    public void setEstrategiaDeAtaque( EstrategiaDeAtaque estrategia ){
+        this.estrategia = estrategia;
+    }
+    
+    public void atacarOrcs( ArrayList<Orc> orcs){
+        ArrayList<Elfo> elfosQueAtacarao = obterGrupo( Status.VIVO );
+        estrategia.atacarOrcs( elfosQueAtacarao, orcs );
     }
 }
