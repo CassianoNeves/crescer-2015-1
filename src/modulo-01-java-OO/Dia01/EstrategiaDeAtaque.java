@@ -8,5 +8,7 @@ import java.util.*;
 public interface EstrategiaDeAtaque{
     
     void atacarOrcs( ArrayList<Elfo> elfos, ArrayList<Orc> orcs );
+    
+    ArrayList<Elfo> getUltimaOrdemAtaque();
 
 }

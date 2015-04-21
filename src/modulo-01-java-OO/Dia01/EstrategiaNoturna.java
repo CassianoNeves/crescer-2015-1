@@ -8,6 +8,8 @@ import java.util.*;
 public class EstrategiaNoturna implements EstrategiaDeAtaque{
     
 
+    ArrayList<Elfo> ultimaOrdem = new ArrayList<>();
+    
     public void atacarOrcs( ArrayList<Elfo> elfos, ArrayList<Orc> orcs ){
         
         int totalAtaques = elfos.size() * orcs.size();
@@ -15,6 +17,7 @@ public class EstrategiaNoturna implements EstrategiaDeAtaque{
         int qtdNoturnoAtacado = 0;
         
         for( Elfo elfoAtual : elfos ){
+            ultimaOrdem.add( elfoAtual );
             if( elfoAtual instanceof ElfoNoturno){
                 if(totalNoturnos > qtdNoturnoAtacado){
                     qtdNoturnoAtacado++;
@@ -28,5 +31,9 @@ public class EstrategiaNoturna implements EstrategiaDeAtaque{
                 elfoAtual.atirarFlecha( orc );
             }
         }
+    }
+    
+    public ArrayList<Elfo> getUltimaOrdemAtaque(){
+        return ultimaOrdem;
     }
 }

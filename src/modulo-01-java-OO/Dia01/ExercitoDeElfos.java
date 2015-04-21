@@ -64,4 +64,8 @@ public class ExercitoDeElfos{
         ArrayList<Elfo> elfosQueAtacarao = obterGrupo( Status.VIVO );
         estrategia.atacarOrcs( elfosQueAtacarao, orcs );
     }
+    
+    public ArrayList<Elfo> getUltimaOrdemDeAtaque(){
+        return estrategia.getUltimaOrdemAtaque();
+    }
 }
