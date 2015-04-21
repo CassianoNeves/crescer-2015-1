@@ -97,4 +97,72 @@ public class ExercitoDeElfosTest{
         assertEquals( elfoNoturno1, exercito.buscar( elfoNoturno1.getNome() ) );
         assertEquals( elfoNoturno2, exercito.buscar( elfoNoturno2.getNome() ) );
     }
+    
+    @Test
+    public void agrupandoOExercitoPorStatusApenasComVivo(){
+        //arrange
+        ExercitoDeElfos exercito = new ExercitoDeElfos();
+        Elfo elfoVerde = new ElfoVerde("verde 1");
+        Elfo elfoNoturno = new ElfoNoturno("Noturno 1");
+        ArrayList<Elfo> resultadoEsperado = new ArrayList<>(
+        Arrays.asList( elfoNoturno, elfoVerde ));
+        //act
+        exercito.alistar( elfoVerde );
+        exercito.alistar( elfoNoturno );
+        //assert
+        assertEquals( resultadoEsperado, exercito.obterGrupo( Status.VIVO ) );
+    }
+    
+    @Test
+    public void agrupandoOExercitoPorStatusApenasComVivoEAtacando(){
+        //arrange
+        ExercitoDeElfos exercito = new ExercitoDeElfos();
+        Elfo elfoVerde1 = new ElfoVerde("verde 1");
+        Elfo elfoVerde2 = new ElfoVerde("verde 2");
+        Elfo elfoNoturno1 = new ElfoNoturno("Noturno 1");
+        Elfo elfoNoturno2 = new ElfoNoturno("Noturno 2");
+        ArrayList<Elfo> resultadoEsperado = new ArrayList<>(
+        Arrays.asList( elfoNoturno1, elfoVerde1 ));
+        //act
+        
+        elfoVerde1.atirarFlecha( new Orc() );
+        elfoNoturno1.atirarFlecha( new Orc() );
+        exercito.alistar( elfoVerde1 );
+        exercito.alistar( elfoNoturno1 );
+        exercito.alistar( elfoVerde2 );
+        exercito.alistar( elfoNoturno2 );
+        
+        //assert
+        assertEquals( resultadoEsperado, exercito.obterGrupo( Status.ATACANDO ) );
+    }
+    
+    @Test
+    public void exercitoAgrupadoPorStatus(){
+        //arrange
+        ExercitoDeElfos exercito = new ExercitoDeElfos();
+        Elfo elfoVerde1 = new ElfoVerde("verde 1");
+        Elfo elfoVerde2 = new ElfoVerde("verde 2");
+        Elfo elfoNoturno1 = new ElfoNoturno("Noturno 1");
+        Elfo elfoNoturno2 = new ElfoNoturno("Noturno 2");
+        HashMap<Status, ArrayList> resultadoEsperado = new HashMap<>();
+        
+        resultadoEsperado.put( Status.ATACANDO, new ArrayList<Elfo>(
+            Arrays.asList( elfoNoturno2, elfoVerde2 ) ) );
+            
+        resultadoEsperado.put( Status.VIVO, new ArrayList<Elfo>(
+            Arrays.asList( elfoNoturno1, elfoVerde1 ) ) );   
+            
+        //act
+        
+        elfoVerde2.atirarFlecha( new Orc() );
+        elfoNoturno2.atirarFlecha( new Orc() );
+        exercito.alistar( elfoVerde1 );
+        exercito.alistar( elfoNoturno1 );
+        exercito.alistar( elfoVerde2 );
+        exercito.alistar( elfoNoturno2 );
+        
+        //assert
+        assertEquals( resultadoEsperado, exercito.getExercitoAgrupado() );
+    }
+    
 }
