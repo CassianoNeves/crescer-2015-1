@@ -87,8 +87,13 @@ rollback
 
 --12)Faça uma consulta que liste o nome do Associado e a descrição da coluna Sexo, informando: Masculino ou Feminino.
 
-select nome, replace(replace(sexo, 'M', 'Masculino'), 'F', 'Feminino')
-from associado
+select nome, 
+	case sexo
+		when 'M' then 'Masculino'
+		when 'F' then 'Feminino'
+		else 'Outro'
+	End Genero
+from associado;
 
 --13)Faça uma consulta que mostre o nome do empregado, o Salario e percentual a ser descontado do Imposto de Renda, 
 --considerando a tabela abaixo:
@@ -97,11 +102,31 @@ from associado
 
 select NomeEmpregado, salario, 
 	case
-		when salario < 1164 then '0%'
-		when salario > 1164 and salario < 2326 then '15%'
+		when salario <= 1164 then '0%'
+		when salario > 1164 and salario <= 2326 then '15%'
 		when salario > 2326 then '27,5%'
 	end
 from empregado
 
 --14)Elimine as cidades duplicadas (mantendo 1 registro para cada).
+
+begin transaction
+
+update Associado set IDCidade = null
+	where 
+
+begin transaction
+delete 
+from cidade
+where IDCidade in (
+	select max(IDCidade)
+	from cidade
+	group by nome, uf
+	having count(1) > 1)
+
+
 --15)Adicione uma regra que impeça exista mais de uma cidade com o mesmo nome em um estado.
+
+Alter table Cidade
+	add constraint UK_CIdade_NomeUF
+	unique (Nome, UF)
