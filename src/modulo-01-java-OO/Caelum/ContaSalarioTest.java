@@ -32,7 +32,6 @@ public class ContaSalarioTest{
         esperado.add(c1);
         esperado.add(c3);
         //act
-        
         Collections.sort( contas );
         //assert
         assertEquals( esperado, contas );

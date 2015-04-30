@@ -16,16 +16,16 @@ public class ContaSalario extends Conta implements Comparable<ContaSalario>{
     
     public int compareTo( ContaSalario outra ){
       
-        System.out.println("aqui-0");
+        System.out.println(this.nomeCliente.compareTo( outra.nomeCliente ));
         
-        if( this.nomeCliente.compareTo( outra.nomeCliente ) == -1 ){
+        if( this.nomeCliente.compareTo( outra.nomeCliente ) < 0 ){
             
             return -1;
             
         }
         
-        if( this.nomeCliente.compareTo( outra.nomeCliente ) == 1 ){
-            System.out.println("aqui+1");
+        if( this.nomeCliente.compareTo( outra.nomeCliente ) > 0 ){
+            
             return 1;
                         
         }
