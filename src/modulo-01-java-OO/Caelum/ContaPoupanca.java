@@ -7,8 +7,8 @@
  */
 public class ContaPoupanca extends Conta implements Comparable<ContaPoupanca>{
     
-    public ContaPoupanca( int numero ){
-        super( numero );
+    public ContaPoupanca( String nomeCliente, int numero ){
+        super( nomeCliente, numero );
     }
 
     public int compareTo( ContaPoupanca o ){

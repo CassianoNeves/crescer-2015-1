@@ -6,12 +6,10 @@ import java.util.*;
  * @version (a version number or a date)
  */
 public class ContaSalario extends Conta implements Comparable<ContaSalario>{
-
-    public String nomeCliente;
     
-    public ContaSalario( int numero, String nome ){
-        super( numero );
-        this.nomeCliente = nome;
+    public ContaSalario( String nomeCliente, int numero ){
+        super( nomeCliente, numero );
+        
     }
     
     public int compareTo( ContaSalario outra ){

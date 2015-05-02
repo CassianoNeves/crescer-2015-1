@@ -18,13 +18,13 @@ public class ContaSalarioTest{
         //arrange
         List<ContaSalario> contas = new ArrayList<>();
         
-        ContaSalario c1 = new ContaSalario(1973, "Joao");
+        ContaSalario c1 = new ContaSalario( "Joao", 1973 );
         contas.add(c1);
     
-        ContaSalario c2 = new ContaSalario(1462, "Cassio");
+        ContaSalario c2 = new ContaSalario( "Cassio", 1462 );
         contas.add(c2);
     
-        ContaSalario c3 = new ContaSalario(1854, "Maria");
+        ContaSalario c3 = new ContaSalario( "Maria", 1854 );
         contas.add(c3);
         
         List<ContaSalario> esperado = new ArrayList<>();

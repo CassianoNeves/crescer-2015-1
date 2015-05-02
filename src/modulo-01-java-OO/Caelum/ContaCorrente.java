@@ -9,8 +9,8 @@ public class ContaCorrente extends Conta implements Comparable<ContaCorrente>{
 
     private double saldo = 0;
     
-    public ContaCorrente( int numero ){
-        super( numero );
+    public ContaCorrente( String nomeCliente, int numero ){
+        super( nomeCliente, numero );
     }
     
     public void deposita( double valor ){

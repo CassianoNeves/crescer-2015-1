@@ -29,13 +29,13 @@ public class TestesGerais{
     }
     
     public void testandoCollectionsSortComObjetos(){
-        ContaCorrente c1 = new ContaCorrente(1);
+        ContaCorrente c1 = new ContaCorrente( "Corrente", 1 );
         c1.deposita(500);
         
-        ContaCorrente c2 = new ContaCorrente(12);
+        ContaCorrente c2 = new ContaCorrente( "Corrente", 12);
         c2.deposita(200);
         
-        ContaCorrente c3 = new ContaCorrente(123);
+        ContaCorrente c3 = new ContaCorrente( "Corrente", 123);
         c3.deposita(150);
         
         List<ContaCorrente> contas = new ArrayList<>();
@@ -46,10 +46,10 @@ public class TestesGerais{
     
     @Test
     public void testaOMetodoCompareToDaContaCorrente(){
-        ContaCorrente c1 = new ContaCorrente(123);
+        ContaCorrente c1 = new ContaCorrente( "Corrente", 123);
         c1.deposita(500);
         
-        ContaCorrente c2 = new ContaCorrente(1234);
+        ContaCorrente c2 = new ContaCorrente("Corrente", 1234);
         c2.deposita(200);
         
         int valor = c1.compareTo(c2);

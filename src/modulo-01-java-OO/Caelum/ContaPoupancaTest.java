@@ -18,13 +18,13 @@ public class ContaPoupancaTest{
         //arrange
         List<ContaPoupanca> contas = new ArrayList<>();
     
-        ContaPoupanca c1 = new ContaPoupanca(1973);
+        ContaPoupanca c1 = new ContaPoupanca( "Poupanca 1", 1973);
         contas.add(c1);
     
-        ContaPoupanca c2 = new ContaPoupanca(1462);
+        ContaPoupanca c2 = new ContaPoupanca( "Poupanca 1", 1462);
         contas.add(c2);
     
-        ContaPoupanca c3 = new ContaPoupanca(1854);
+        ContaPoupanca c3 = new ContaPoupanca( "Poupanca 1", 1854);
         contas.add(c3);
         
         List<ContaPoupanca> esperado = new ArrayList<>();
@@ -47,13 +47,13 @@ public class ContaPoupancaTest{
         //arrange
         List<ContaPoupanca> contas = new LinkedList<>();
     
-        ContaPoupanca c1 = new ContaPoupanca(1973);
+        ContaPoupanca c1 = new ContaPoupanca( "Poupanca 1", 1973);
         contas.add(c1);
     
-        ContaPoupanca c2 = new ContaPoupanca(1462);
+        ContaPoupanca c2 = new ContaPoupanca( "Poupanca 1", 1462);
         contas.add(c2);
     
-        ContaPoupanca c3 = new ContaPoupanca(1854);
+        ContaPoupanca c3 = new ContaPoupanca( "Poupanca 1", 1854);
         contas.add(c3);
         
         List<ContaPoupanca> esperado = new LinkedList<>();
@@ -72,13 +72,13 @@ public class ContaPoupancaTest{
         //arrange
         List<ContaPoupanca> contas = new ArrayList<>();
     
-        ContaPoupanca c1 = new ContaPoupanca(1973);
+        ContaPoupanca c1 = new ContaPoupanca( "Poupanca 1", 1973);
         contas.add(c1);
     
-        ContaPoupanca c2 = new ContaPoupanca(1462);
+        ContaPoupanca c2 = new ContaPoupanca( "Poupanca 1", 1462);
         contas.add(c2);
     
-        ContaPoupanca c3 = new ContaPoupanca(1854);
+        ContaPoupanca c3 = new ContaPoupanca( "Poupanca 1", 1854);
         contas.add(c3);
         
         List<ContaPoupanca> esperado = new ArrayList<>();
@@ -99,7 +99,7 @@ public class ContaPoupancaTest{
     
         Random gerador = new Random();
         for( int i =0; i < 10; i++ ){
-            contas.add( new ContaPoupanca( gerador.nextInt(2000) ) );
+            contas.add( new ContaPoupanca( "conta", gerador.nextInt(2000) ) );
         }
         
         //act
@@ -115,13 +115,13 @@ public class ContaPoupancaTest{
         //arrange
         List<ContaPoupanca> contas = new LinkedList<>();
     
-        ContaPoupanca c1 = new ContaPoupanca(1973);
+        ContaPoupanca c1 = new ContaPoupanca( "Poupanca 1", 1973);
         contas.add(c1);
-        
-        ContaPoupanca c2 = new ContaPoupanca(1462);
+    
+        ContaPoupanca c2 = new ContaPoupanca( "Poupanca 1", 1462);
         contas.add(c2);
-        
-        ContaPoupanca c3 = new ContaPoupanca(1854);
+    
+        ContaPoupanca c3 = new ContaPoupanca( "Poupanca 1", 1854);
         contas.add(c3);
             
         List<ContaPoupanca> esperado = new ArrayList<>();
