@@ -5,7 +5,7 @@
 	<title>Exercicio 2</title>
 </head>
 <body>
-	<form method="GET" enctype="multipart/form-data">
+	<form method="POST" enctype="multipart/form-data">
 		<h1>Aula</h1>
 
 		<div>
@@ -67,12 +67,39 @@
 
 		<div>
 			<label for="img">Imagem: </label>
-			<input id="img" type="file" name="img" accept="image/x-png, image/gif, image/jpeg"/>
+			<input id="img" type="file" name="img" accept=".jpeg, .jpg, .png" onChange="return validarExt()"/>
 		</div>
 
 		<div>
 			<input id="cadastrar" type="submit" name="cadastrar" value="Cadastrar"/>
 		</div>
 	</form>
-</body>
+
+	<script>
+		function validarExt() {
+			//var inputFile = document.getElementsByName('avatar')[0];
+			var inputFile = document.getElementById('img');
+			var nomeArquivo = inputFile.value;
+			var valida = false;
+			var extensoesValidas = [ '.jpg', '.jpeg', '.png' ];
+			for (var i = 0, len = extensoesValidas.length; i < len; i++) {
+				var ext = extensoesValidas[i];
+				var apenasAExtensao = nomeArquivo.substring(nomeArquivo.length-ext.length, 
+					nomeArquivo.length).toLowerCase();
+
+				if (apenasAExtensao === ext.toLowerCase()) {
+					valida = true;
+					inputFile.value = null;
+					break;
+				}
+			}
+			if (valida === false) {
+				alert('Extensão inválida!');
+				inputFile.value = null;
+			}
+
+			return valida;
+		}
+	</script>
+	</body>
 </html>
