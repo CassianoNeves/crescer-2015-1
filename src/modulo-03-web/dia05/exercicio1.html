@@ -38,6 +38,10 @@ var manchesterUnited = {
 
 var clubes = [ liverpool, arsenal, manchesterUnited, chelsea ];
 
+var clubesOrdenadosNacDes = function(a, b){
+  return (a.titulos[0].qtd < b.titulos[0].qtd)
+}
 
+clubes.sort(clubesOrdenadosNacDes);
 
 </script>
