@@ -38,10 +38,21 @@ var manchesterUnited = {
 
 var clubes = [ liverpool, arsenal, manchesterUnited, chelsea ];
 
-var clubesOrdenadosNacDes = function(a, b){
-  return (a.titulos[0].qtd < b.titulos[0].qtd)
+var ordenaPorNacionais = function(a, b){
+ 	return (a.titulos[0].qtd < b.titulos[0].qtd)
 }
 
-clubes.sort(clubesOrdenadosNacDes);
+clubes.sort(ordenaPorNacionais);
 
+var ordenaPorContinentais = function(a, b){
+ 	return (a.titulos[1].qtd < b.titulos[1].qtd)
+}
+
+clubes.sort(ordenaPorContinentais);
+
+var ordenaPorMundiais = function(a, b){
+ 	return (a.titulos[2].qtd < b.titulos[2].qtd)
+}
+
+clubes.sort(ordenaPorMundiais);
 </script>
