@@ -39,20 +39,74 @@ var manchesterUnited = {
 var clubes = [ liverpool, arsenal, manchesterUnited, chelsea ];
 
 var ordenaPorNacionais = function(a, b){
- 	return (a.titulos[0].qtd < b.titulos[0].qtd)
-}
+ 	return (a.titulos[0].qtd < b.titulos[0].qtd);
+};
 
 clubes.sort(ordenaPorNacionais);
 
 var ordenaPorContinentais = function(a, b){
- 	return (a.titulos[1].qtd < b.titulos[1].qtd)
-}
+ 	return (a.titulos[1].qtd < b.titulos[1].qtd);
+};
 
 clubes.sort(ordenaPorContinentais);
 
 var ordenaPorMundiais = function(a, b){
- 	return (a.titulos[2].qtd < b.titulos[2].qtd)
-}
+ 	return (a.titulos[2].qtd < b.titulos[2].qtd);
+};
 
 clubes.sort(ordenaPorMundiais);
+
+var somarPorNacionais = function(a){
+	return a.map(function(i){
+		return i.titulos[0].qtd;
+	}).reduce(function(a,b){
+		return a + b;
+	});
+};
+
+var somarPorContinentais = function(a){
+	return a.map(function(i){
+		return i.titulos[1].qtd;
+	}).reduce(function(a,b){
+		return a + b;
+	});
+};
+
+var somarPorTodosTitulos = function(a){
+	var soma = 0;
+	 soma += a.map(function(i){
+		return i.titulos[0].qtd;
+	}).reduce(function(a,b){
+		return a + b;
+	});
+
+	soma += a.map(function(i){
+		return i.titulos[1].qtd;
+	}).reduce(function(a,b){
+		return a + b;
+	});
+
+	soma += a.map(function(i){
+		return i.titulos[2].qtd;
+	}).reduce(function(a,b){
+		return a + b;
+	});
+
+	return soma;
+};
+
+var apenasOsMelhores = function(a){
+	var melhores = [];
+
+	a.map(function(i){	
+		if(i.titulos[0].qtd > 18 ){
+			melhores.push(i);
+		}
+	});
+	return melhores;
+};
+//5a
+var StringJson = JSON.stringify(apenasOsMelhores(clubes));
+//5b
+ var obj = JSON.parse(StringJson);
 </script>
