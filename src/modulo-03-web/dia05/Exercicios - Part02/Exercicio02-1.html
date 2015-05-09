@@ -12,6 +12,10 @@
 				(Math.pow(( 1 + this.taxaJuros ), this.nroParcelas )- 1))).toFixed(2);
 
 		};
+
+		this.valorTotalJuros = function(){
+			return ((this.prestacao() * nroParcelas) - this.valorTotal).toFixed(2);
+		};
 	}
 
 //Questão 01
@@ -25,5 +29,7 @@ emprestimo2.nroParcelas;
 
 //Questão 02
 emprestimo1.prestacao();
+//Questão 03
+emprestimo.valorTotalJuros();
 
 </script>	
