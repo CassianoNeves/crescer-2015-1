@@ -1,0 +1,16 @@
+<script type="text/javascript">
+
+	var brewdog = function( texto1, texto2 ){
+		
+		var maior = texto1.length > texto2.length ? texto1.length : texto2.length; 
+		var qtdRepetida = 0;
+
+		for(var i = 0; i < maior; i++){
+			if(texto1.charAt(i) === texto2.charAt(i)){
+				qtdRepetida++;
+			}
+		}
+
+		return qtdRepetida;
+	};
+</script>
