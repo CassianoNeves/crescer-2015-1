@@ -1,0 +1,29 @@
+<script type="text/javascript">
+
+	function Emprestimo(valorTotal, taxaJuros, nroParcelas) {
+
+		this.valorTotal = valorTotal;
+		this.taxaJuros = taxaJuros;
+		this.nroParcelas = nroParcelas || 3;
+
+		this.prestacao = function(){
+
+			return (valorTotal * ((Math.pow(( 1 + this.taxaJuros ), this.nroParcelas ) * this.taxaJuros ) / 
+				(Math.pow(( 1 + this.taxaJuros ), this.nroParcelas )- 1))).toFixed(2);
+
+		};
+	}
+
+//Questão 01
+var emprestimo1 = new Emprestimo(1000, 0.03, 4);
+var emprestimo2 = new Emprestimo(500, 0.05);
+
+emprestimo1.valorTotal;
+emprestimo2.nroParcelas;
+//Termina Questão 01
+
+
+//Questão 02
+emprestimo1.prestacao();
+
+</script>	
