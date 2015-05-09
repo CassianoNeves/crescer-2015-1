@@ -14,7 +14,7 @@
 		};
 
 		this.valorTotalJuros = function(){
-			return parseFloat(((this.prestacao() * nroParcelas) - this.valorTotal).toFixed(2));
+			return parseFloat(((this.valorParcela() * this.nroParcelas) - this.valorTotal).toFixed(2));
 		};
 	}
 
