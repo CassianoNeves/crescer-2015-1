@@ -6,15 +6,15 @@
 		this.taxaJuros = taxaJuros;
 		this.nroParcelas = nroParcelas || 3;
 
-		this.prestacao = function(){
+		this.valorParcela = function(){
 
-			return (valorTotal * ((Math.pow(( 1 + this.taxaJuros ), this.nroParcelas ) * this.taxaJuros ) / 
-				(Math.pow(( 1 + this.taxaJuros ), this.nroParcelas )- 1))).toFixed(2);
+			return parseFloat((valorTotal * ((Math.pow(( 1 + this.taxaJuros ), this.nroParcelas ) * this.taxaJuros ) / 
+				(Math.pow(( 1 + this.taxaJuros ), this.nroParcelas )- 1))).toFixed(2));
 
 		};
 
 		this.valorTotalJuros = function(){
-			return ((this.prestacao() * nroParcelas) - this.valorTotal).toFixed(2);
+			return parseFloat(((this.prestacao() * nroParcelas) - this.valorTotal).toFixed(2));
 		};
 	}
 
@@ -26,10 +26,8 @@ emprestimo1.valorTotal;
 emprestimo2.nroParcelas;
 //Termina Questão 01
 
-
 //Questão 02
-emprestimo1.prestacao();
+emprestimo1.valorParcela();
 //Questão 03
-emprestimo.valorTotalJuros();
-
+emprestimo1.valorTotalJuros();
 </script>	
