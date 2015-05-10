@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+	var palindromo = function(s){
+
+		palindromosFixos = ["iluminatti", "ledesma", "dante", "verdemusgo", "bacon"];
+
+		s = s.toLocaleLowerCase();
+		s = s.replace(/[ ,-@!#?$.<>"]/g, "");;
+		s = s.replace(/[áâàã]/ig, "a");
+		s = s.replace(/[ç]/ig, "c");
+		s = s.replace(/[éê]/ig, "e");
+		s = s.replace(/[í]/ig, "i");
+		s = s.replace(/[ôóõ]/ig, "o");
+		s = s.replace(/[úü]/ig, "o");
+
+		if( palindromosFixos.indexOf(s) !== -1 ){
+			return true;
+		}
+
+		var invertida = s.split('').reverse().join('');
+		//alert(invertida);
+		
+		if( invertida === s ){
+			return true;
+		} else{
+			return false;
+		}
+	};
+
+	var ehPalindromo = palindromo(prompt("Digite a palavra que deseja verificar"));
+	
+	if(ehPalindromo){
+		alert("é palindromo");
+	} else{
+		alert("não é");
+	}
+
+</script>
