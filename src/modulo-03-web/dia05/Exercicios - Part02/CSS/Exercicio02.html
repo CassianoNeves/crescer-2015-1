@@ -6,37 +6,48 @@
     <style>
       .azul {
         color: blue;
-        font-size: 2em;
       }
+      
       .vermelho {
-        font-size: 2em;
         color: red;
       }
+
       .caixinha-preta {
         background-color: black;
         float: left;
-        width: 400px;
-        height: 50px;
-        border-radius: 15px;
-      }
-      #sqn {
-        background-color: black;
+        font-family: 'Comic Sans MS';
       }
 
       .text-center{
         text-align: center;
       }
+
+      .float-left{
+        float: left;
+      }
+
+      .font{
+        font-size: 2em;
+      }
+
+      .margin-left-50{
+        margin-left: 50;
+      }
+
+      .width-400{
+        width: 400px;
+      }
     </style>
   </head>
   <body>
-    <div class="caixinha-preta" style="font-family: 'Comic Sans MS'" class="text-center">
-      <span class="azul">CSS</span>
-      <span class="vermelho">é</span> 
+    <div class="caixinha-preta text-center width-400" style="height: 50px; border-radius: 15px;" >
+      <span class="azul font">CSS</span>
+      <span class="vermelho font">é</span> 
     </div>
-    <div style="font-family: 'Comic Sans MS'; background-color: black; width: 400px; float: left;" class="text-center">
-      <span class="azul">super</span>
+    <div class="text-center caixinha-preta width-400">
+      <span class="azul font">super</span>
     </div>
-    <span id="sqn" style="color: red; margin: 0 0 0 50;" class="text-center">legal</span>
-    <span style="color: red; font-size: 2em; margin-left: 50" class="text-center">#sqn</span>
+    <span class="text-center vermelho margin-left-50" style="background-color: black;">legal</span>
+    <span class="text-center font vermelho margin-left-50">#sqn</span>
   </body>
 </html>
