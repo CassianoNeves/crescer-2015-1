@@ -186,6 +186,19 @@ $('html img')
 //1-l
 $('#myList li.current ~ li').text().length
 
+//2-a
+$('img[alt]').each(function(){
+	console.log(this);
+});
+
+//2-b
+$('input[type=text]').parent().addClass('template')
+
+//2-c
+$('#myList li.current').removeClass().next().addClass('current')
+
+
+
 </script>
 
 
