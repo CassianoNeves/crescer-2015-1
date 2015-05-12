@@ -162,29 +162,29 @@
 <script type="text/javascript">
 
 //1-a
-$('.module')
+$('.module');
 
 //1-b
-$('ul li:eq(2)')
+$('ul li:eq(2)');
 
 //1-c
-$('label[for=q]')
+$('label[for=q]');
 
 //1-d
-$('[alt]').length
+$('[alt]').length;
 
 //1-e
-$("h2:contains('B'):contains('e')")
+$("h2:contains('B'):contains('e')");
 
 //1-g
-$('#myList li:not(.current)')
+$('#myList li:not(.current)');
 
 //1-h
-//revisar, ainda não entendi o que pede..
-$('html img')
+//Não tenho certeza se é isso
+$('html img:last');
 
 //1-l
-$('#myList li.current ~ li').text().length
+$('#myList li.current ~ li').text().length;
 
 //2-a
 $('img[alt]').each(function(){
@@ -192,12 +192,17 @@ $('img[alt]').each(function(){
 });
 
 //2-b
-$('input[type=text]').parent().addClass('template')
+$('input[type=text]').parent().addClass('template');
 
 //2-c
-$('#myList li.current').removeClass().next().addClass('current')
+$('#myList li.current').removeClass().next().addClass('current');
 
+//2-d
+//Não consegui fazer..
+$('#specials h2').text('Promoções');
 
+//2-e
+$('#slideshow li:first').addClass('current').siblings().addClass('disabled');
 
 </script>
 
