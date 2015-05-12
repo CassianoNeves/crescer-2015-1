@@ -214,6 +214,14 @@ var adicionar =  function(x){
 	}
 };
 
+//3-b
+$('#myList li').each(function(){
+	var i = parseFloat($(this).text().slice(10));
+    if( i % 2 === 0){
+      $(this).detach();
+    }    
+});
+
 </script>
 
 
