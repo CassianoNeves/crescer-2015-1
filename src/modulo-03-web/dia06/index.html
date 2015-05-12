@@ -204,6 +204,16 @@ $('#specials h2').text('Promoções');
 //2-e
 $('#slideshow li:first').addClass('current').siblings().addClass('disabled');
 
+//3-a
+var adicionar =  function(x){
+	for( var i = 0; i < x; i++ ){
+		var proximo = parseFloat($('#myList li:last').text().slice(10)) + 1;
+		var texto = $('#myList li:last').text().slice(0, 10 ) + proximo;
+		var elemento = $('#myList li:last').clone().text(texto);
+		$('#myList').append(elemento);
+	}
+};
+
 </script>
 
 
