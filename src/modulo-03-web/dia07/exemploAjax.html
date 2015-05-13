@@ -1,0 +1,19 @@
+<!doctype>
+<html>
+<head>
+	<title>United!!</title>
+</head>
+<body>
+	<script src="../jQuery/jquery-1.11.3.js" ></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax({
+				url: 'http://content.guardianapis.com/search?q=manchester%20united&api-key=test',
+				type: 'json'
+			}).done(function(res){
+				res.response.results
+			})
+		});
+	</script>
+</body>
+</html>

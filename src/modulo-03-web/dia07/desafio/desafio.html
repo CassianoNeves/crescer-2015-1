@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(-30,-51);
+          var mapOptions = {
+            zoom: 13,
+            center: myLatlng
+          }
+        var data = {
+          resource_id: '1ac41c33-fcd5-4b42-890f-a7bad6216663', // the resource id
+        };
+        $.ajax({
+          url: 'http://datapoa.com.br/api/action/datastore_search',
+          data: data,
+          dataType: 'jsonp'
+        }).done(function(res){
+          var sedes = res.result.records;
+          var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+          
+          sedes.forEach(function(i){
+            var latLng = new google.maps.LatLng(i.Latitude, i.Longitude); 
+            var marker = new google.maps.Marker({
+              position: latLng,
+              map: map,
+              title: i.Name
+            });
+          });
+        });        
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </body>
+</html>
