@@ -174,14 +174,17 @@ $('label[for=q]');
 $('[alt]').length;
 
 //1-e
-$("h2:contains('B'):contains('e')");
+$('#fruits tbody tr:odd');
+
+//1-f
+$("h2:contains('B'):contains('e')").length;
 
 //1-g
 $('#myList li:not(.current)');
 
 //1-h
 //Não tenho certeza se é isso
-$('html img, h3:last');
+$('img:last, h3:last');
 
 //1-l
 $('#myList li.current ~ li').text().length;
@@ -218,12 +221,14 @@ var adicionar =  function(x){
 $('#myList li').each(function(){
 	var i = parseFloat($(this).text().slice(10));
     if( i % 2 === 0){
-      $(this).detach();
+      $(this).remove();
     }    
 });
 
 //3-c
 $('div.module:last').after('<div class="module"><img src="'+$('img:first').attr('src')+'"/></div>');
+
+$('div.module:last').after($('<div/>').addClass('module').append($('img:first').clone()));
 
 </script>
 
