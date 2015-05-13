@@ -2,8 +2,7 @@ package filmator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.swing.JOptionPane;
+import java.util.Map;
 
 public class Netflox {
 	
@@ -26,6 +25,18 @@ public class Netflox {
 		} else{
 			throw new IllegalArgumentException("O filme não existe!");
 		}
+	}
+	
+	public String getRelatorio(){
+		StringBuilder relatorio = new StringBuilder();
+		
+		for(  Map.Entry<Genero,Integer> generoQts : contadorDeVisualizacao.entrySet()){
+			relatorio.append("Genero: " + generoQts.getKey().getNome() +
+							 " assistido " + generoQts.getValue() + " vezes.\n");
+		}
+		
+		return relatorio.toString();
+		
 	}
 	
 	public HashMap<Genero, Integer> getContadorDeVisualizacao() {
