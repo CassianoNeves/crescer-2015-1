@@ -9,6 +9,39 @@ public class ReceitasDaVovo implements LivroReceitas{
 
 	List<Receita> livro = new ArrayList<>();
 	
+	public double valorTotalDasReceitasDaVovo(){
+		
+		double total = 0;
+		
+		for (Receita receita : livro) {
+			total += receita.valorDaReceita();
+		}
+		
+		return total;
+	}
+	
+	public List<Receita> buscaReceitasQueNaoPossuem( List<Ingrediente> ingredientes ){
+		
+		List<Receita> naoTemOsIngredientes = new ArrayList<Receita>();
+		
+		for ( Receita receita : livro ) {
+			for (Ingrediente ingrediente : ingredientes) {
+				if( !receita.pesquisarIngredienteNaReceita( ingrediente ) ){
+					naoTemOsIngredientes.add( receita );
+				}
+			}
+		}
+		
+		return naoTemOsIngredientes;
+	}
+	
+	public List<Ingrediente> fazerAListaDeCompras( List<Receita> receitas ){
+		
+		
+		
+		return null;
+	}
+	
 	@Override
 	public void inserir(Receita receita) {
 		if( receita == null ){

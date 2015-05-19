@@ -1,4 +1,5 @@
 package Cuca;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,35 @@ public class Receita {
 	public List<Instrucao> getInstrucao() {
 		return instrucoes;
 	}
-
 	
+	public double valorDaReceita(){
+		
+		double total = 0;
+		
+		for (Ingrediente ingrediente : ingredientes) {
+			total += ingrediente.getPreco();
+		}
+		
+//		DecimalFormat df = new DecimalFormat("0.##");  
+//		String totalString = df.format( total );  
+//		
+//		total = Double.parseDouble( totalString );
+		
+//		total = ( (int) ( total * 100) ) / 100;
+		
+		return total;
+	}
+	
+	public boolean pesquisarIngredienteNaReceita( Ingrediente ingrediente ){
+		
+		boolean tem = false;
+		
+		for ( Ingrediente ingredienteAtual : ingredientes ) {
+			if( ingredienteAtual.getNome().equalsIgnoreCase( ingrediente.getNome() ) ){
+				tem = true;
+			}
+		}
+		
+		return tem;
+	}
 }
