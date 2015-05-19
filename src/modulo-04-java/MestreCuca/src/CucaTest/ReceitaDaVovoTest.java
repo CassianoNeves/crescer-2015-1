@@ -1,12 +1,15 @@
 package CucaTest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
+import Cuca.ChaveIngrediente;
 import Cuca.Ingrediente;
 import Cuca.Instrucao;
 import Cuca.Receita;
@@ -211,4 +214,43 @@ public class ReceitaDaVovoTest {
 		
 		Assert.assertEquals( esperado, obtido );
 	}
+	
+	@Test
+	public void gerarListaDeCompras() throws Exception {
+		//arrange
+		
+		Receita receita1 = new Receita( "Bolo de Fuba" );
+
+		receita1.addIngrediente( new Ingrediente( "Farinha", 1, UnidadeMedida.XICARA, 10.30 ) );
+		receita1.addIngrediente( new Ingrediente( "Leite", 1, UnidadeMedida.COLHER_SOPA, 5.75 ) );
+		receita1.addIngrediente( new Ingrediente( "Fermento", 2, UnidadeMedida.COLHER_CHA, 3.5 ) );
+		
+		Receita receita2 = new Receita( "Lazanha" );
+
+		receita2.addIngrediente( new Ingrediente( "Oleo", 3, UnidadeMedida.XICARA, 8.34 ) );
+		receita2.addIngrediente( new Ingrediente( "Fermento", 1, UnidadeMedida.COLHER_CHA, 3.5 ) );
+		receita2.addIngrediente( new Ingrediente( "Farinha", 3, UnidadeMedida.XICARA, 10.30 ) );
+		
+		ReceitasDaVovo livro = new ReceitasDaVovo();
+		
+		livro.inserir( receita1 );
+		livro.inserir( receita2 );
+		
+		Map<ChaveIngrediente, Integer> esperado = new HashMap<ChaveIngrediente, Integer>();
+		esperado.put( new ChaveIngrediente( new Ingrediente( "Farinha", 1, UnidadeMedida.XICARA, 10.30 ) ), 4 );
+		esperado.put( new ChaveIngrediente( new Ingrediente( "Fermento", 2, UnidadeMedida.COLHER_CHA, 3.5 ) ), 3 );
+		esperado.put( new ChaveIngrediente( new Ingrediente( "Oleo", 3, UnidadeMedida.XICARA, 8.34 ) ), 3 );
+		esperado.put( new ChaveIngrediente( new Ingrediente( "Leite", 1, UnidadeMedida.COLHER_SOPA, 5.75 ) ), 1 );
+		
+		//act
+
+		Map<ChaveIngrediente, Integer> obtido = livro.fazerListaDeCompras( livro.getTodasReceitas() );
+		
+		//assert
+		
+		Assert.assertEquals( esperado, obtido );
+
+	}
+	
+	
 }

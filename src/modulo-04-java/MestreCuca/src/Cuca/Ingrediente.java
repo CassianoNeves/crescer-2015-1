@@ -4,11 +4,13 @@ package Cuca;
 public class Ingrediente {
 	
 	private String nome;
-	private double quantidade;
+	private int quantidade;
 	private UnidadeMedida unidadeMedida;
+	
+
 	private double preco;
 	
-	public Ingrediente( String nome, double quantidade, UnidadeMedida unidadeMedida, double preco ) {
+	public Ingrediente( String nome, int quantidade, UnidadeMedida unidadeMedida, double preco ) {
 		this.preco = preco;
 		this.nome = nome;
 		this.quantidade = quantidade;
@@ -22,6 +24,14 @@ public class Ingrediente {
 
 	public double getPreco() {
 		return preco;
+	}
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public UnidadeMedida getUnidadeMedida() {
+		return unidadeMedida;
 	}
 
 }

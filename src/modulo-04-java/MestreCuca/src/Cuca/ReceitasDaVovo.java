@@ -1,7 +1,9 @@
 package Cuca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -35,11 +37,26 @@ public class ReceitasDaVovo implements LivroReceitas{
 		return naoTemOsIngredientes;
 	}
 	
-	public List<Ingrediente> fazerAListaDeCompras( List<Receita> receitas ){
+	public Map<ChaveIngrediente, Integer> fazerListaDeCompras( List<Receita> receitas ){
 		
+		Map<ChaveIngrediente, Integer> listaDeCompras = new HashMap<ChaveIngrediente, Integer>();
 		
+		for ( Receita receita : receitas ) {
+			for ( Ingrediente ingrediente : receita.getIngredientes() ) {
+				
+				ChaveIngrediente chaveIngrediente = new ChaveIngrediente( ingrediente );
+				
+				if( listaDeCompras.containsKey( chaveIngrediente ) ){
+					int quantidade = listaDeCompras.get( chaveIngrediente );
+					quantidade += ingrediente.getQuantidade();
+					listaDeCompras.put( chaveIngrediente, quantidade );
+				} else{
+					listaDeCompras.put( chaveIngrediente, ingrediente.getQuantidade() );
+				}
+			}
+		}
 		
-		return null;
+		return listaDeCompras;
 	}
 	
 	@Override
