@@ -252,5 +252,45 @@ public class ReceitaDaVovoTest {
 
 	}
 	
+	@Test
+	public void gerarListaDeComprasDoMarlon() throws Exception {
+		//arrange
+		
+		Receita receita1 = new Receita( "Arroz de forno" );
+
+		receita1.addIngrediente( new Ingrediente( "arroz", 3, UnidadeMedida.XICARA, 10.30 ) );
+		receita1.addIngrediente( new Ingrediente( "sal", 1, UnidadeMedida.COLHER_SOPA, 5.75 ) );
+		
+		Receita receita2 = new Receita( "Arroz doce" );
+
+		receita2.addIngrediente( new Ingrediente( "arroz", 1, UnidadeMedida.XICARA, 8.34 ) );
+		receita2.addIngrediente( new Ingrediente( "leite condensado", 1, UnidadeMedida.UNIDADE, 3.5 ) );
+		
+		Receita receita3 = new Receita( "Carne de panela" );
+
+		receita3.addIngrediente( new Ingrediente( "carne", 1000, UnidadeMedida.GRAMA, 8.34 ) );
+		receita3.addIngrediente( new Ingrediente( "sal", 1, UnidadeMedida.COLHER_SOPA, 3.5 ) );
+		
+		ReceitasDaVovo livro = new ReceitasDaVovo();
+		
+		livro.inserir( receita1 );
+		livro.inserir( receita2 );
+		livro.inserir( receita3 );
+		
+		Map<ChaveIngrediente, Integer> esperado = new HashMap<ChaveIngrediente, Integer>();
+		esperado.put( new ChaveIngrediente( new Ingrediente( "arroz", 1, UnidadeMedida.XICARA, 10.30 ) ), 4 );
+		esperado.put( new ChaveIngrediente( new Ingrediente( "sal", 2, UnidadeMedida.COLHER_SOPA, 3.5 ) ), 2 );
+		esperado.put( new ChaveIngrediente( new Ingrediente( "leite condensado", 3, UnidadeMedida.UNIDADE, 8.34 ) ), 1 );
+		esperado.put( new ChaveIngrediente( new Ingrediente( "carne", 1, UnidadeMedida.GRAMA, 5.75 ) ), 1000 );
+		
+		//act
+
+		Map<ChaveIngrediente, Integer> obtido = livro.fazerListaDeCompras( livro.getTodasReceitas() );
+		
+		//assert
+		
+		Assert.assertEquals( esperado, obtido );
+
+	}
 	
 }
