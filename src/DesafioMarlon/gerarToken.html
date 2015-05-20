@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gerar Token</title>
+</head>
+<body>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+		var nome = {
+			nome: "Cassiano"
+		}
+
+		$.ajax({
+  			url: 'http://illuminati.instaweb.com.br:6789/autentica',
+  			type: 'POST',
+  			contentType: 'json',
+  			data: JSON.stringify(nome)
+
+		})
+	});
+
+
+</script>
+</body>
+</html>
+
+"13f9dd7950e7"

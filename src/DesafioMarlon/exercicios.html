@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Post Exercicios</title>
+</head>
+<body>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+		var resposta = { 
+			resposta: 10 
+		}
+
+		$.ajax({
+  			url: 'http://illuminati.instaweb.com.br:6789/exercicios?token=13f9dd7950e7',
+  			type: 'POST',
+  			contentType: 'json',
+  			data: JSON.stringify(resposta)
+		})
+	});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>GET Exercicios</title>
+</head>
+<body>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+
+		$.ajax({
+  			url: 'http://illuminati.instaweb.com.br:6789/exercicios?token=13f9dd7950e7',
+  			type: 'GET',
+  			contentType: 'json',
+  			dataType: 'json'
+		}).done(function(res){
+
+			var ob = res.dados;
+			console.log(ob);
+
+			var total = 0;
+			
+			ob.forEach(function(i){
+				if( i.status === "INCLUIDO"){
+					total = total + i.data;
+				}
+					
+				
+				
+			})
+
+			console.log(total);
+
+			var resposta = { 
+				resposta: total 
+			}
+
+			$.ajax({
+	  			url: 'http://illuminati.instaweb.com.br:6789/exercicios?token=13f9dd7950e7',
+	  			type: 'POST',
+	  			contentType: 'json',
+	  			data: JSON.stringify(resposta)
+			})
+
+				
+		})
+
+
+	});
+
+
+</script>
+</body>
+</html>
