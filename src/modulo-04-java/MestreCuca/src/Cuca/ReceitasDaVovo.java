@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class ReceitasDaVovo implements LivroReceitas{
 
-	List<Receita> livro = new ArrayList<>();
+	private List<Receita> livro = new ArrayList<>();
 	
 	public double valorTotalDasReceitasDaVovo(){
 		
@@ -72,7 +72,7 @@ public class ReceitasDaVovo implements LivroReceitas{
 		}
 	}
 	
-	private void lançaExecao( String descricao ) {
+	protected void lançaExecao( String descricao ) {
 		throw new IllegalArgumentException( "Erro: " + descricao );
 	}
 
