@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Run to the Hills</title>
+
+	<link rel="stylesheet" type="text/css" href="../components/dist/css/bootstrap.css">
+	<style type="text/css">
+		.img{
+			margin: 20px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="conteudo" class="container">
+	<div class="row"></div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="../components/dist/js/bootstrap.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	$.ajax({
+		url: 'https://api.spotify.com/v1/artists/6mdiAmATAx73kdxrNrnlao/albums?limit=50',
+		type: 'GET',
+		contentType: 'json',
+		dataType: 'json'
+	}).done(function(res){
+		var itens = res.items;
+		//console.log(itens[0].images[1].url);
+
+		itens.forEach(function(i){
+			$( '#conteudo div.row' )
+				.append( $('<div />' )
+					.addClass( 'col-lg-4 col-md-4 col-xs-4' )
+					.append( $( '<img/>' )
+					.addClass('img')
+					.attr('src', i.images[1].url) ) )
+		});
+	});
+});
+</script>
+</body>
+</html>
