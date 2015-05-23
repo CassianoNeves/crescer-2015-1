@@ -1,4 +1,4 @@
-package Cuca;
+package cuca;
 
 public enum UnidadeMedida {
 	

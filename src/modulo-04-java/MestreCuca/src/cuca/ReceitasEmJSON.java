@@ -1,4 +1,4 @@
-package Cuca;
+package cuca;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +17,8 @@ public class ReceitasEmJSON extends ReceitasDaVovo implements LivroReceitas{
 	private static final int Receitas = 0;
 	private List<Receita> livro = new ArrayList<>();
 	private String caminhoSalvar;
-	ObjectMapper mapper = new ObjectMapper();
-	File json;
+	private ObjectMapper mapper = new ObjectMapper();
+	private File json;
 	
 	public ReceitasEmJSON( String caminhoSalvar ) {
 		this.caminhoSalvar = caminhoSalvar;

@@ -1,4 +1,4 @@
-package CucaTest;
+package cucatest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,12 +9,12 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import Cuca.ChaveIngrediente;
-import Cuca.Ingrediente;
-import Cuca.Instrucao;
-import Cuca.Receita;
-import Cuca.ReceitasDaVovo;
-import Cuca.UnidadeMedida;
+import cuca.ChaveIngrediente;
+import cuca.Ingrediente;
+import cuca.Instrucao;
+import cuca.Receita;
+import cuca.ReceitasDaVovo;
+import cuca.UnidadeMedida;
 
 public class ReceitaDaVovoTest {
 	@Test

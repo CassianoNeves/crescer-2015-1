@@ -1,13 +1,13 @@
-package CucaTest;
+package cucatest;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
 
 import org.junit.Test;
 
-import Cuca.Ingrediente;
-import Cuca.Receita;
-import Cuca.UnidadeMedida;
+import cuca.Ingrediente;
+import cuca.Receita;
+import cuca.UnidadeMedida;
 
 public class ReceitaTest {
 	

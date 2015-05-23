@@ -1,4 +1,4 @@
-package Cuca;
+package cuca;
 
 import java.util.List;
 

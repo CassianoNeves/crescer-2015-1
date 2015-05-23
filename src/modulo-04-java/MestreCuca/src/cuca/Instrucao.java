@@ -1,11 +1,11 @@
-package Cuca;
+package cuca;
 
 public class Instrucao {
 	
-	private String descrição;
+	private String descricao;
 	
 	public Instrucao( String descricao ) {
-		this.descrição = descricao;
+		this.descricao = descricao;
 	}
 
 }
