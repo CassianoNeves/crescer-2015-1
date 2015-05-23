@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Karate</title>
+</head>
+<body>
+<meta charset="utf-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+	var nome;
+		$.ajax({
+  			url: 'http://karatekid.instaweb.com.br:4567/apresentar?nome=Cassiano',
+  			type: 'POST',
+		}).done(function(apresentar){
+			nome =apresentar.nome;
+			$.ajax({
+	  			url: 'http://karatekid.instaweb.com.br:4567/tarefas?nome='+ nome,
+	  			type: 'GET',
+			}).done(function(atividades){
+
+				var terminei = 0;
+
+			    $.ajax({
+			        url:'http://karatekid.instaweb.com.br:4567/' + atividades.atividades[0].atividade + '?nome=' + nome,
+			        type: 'POST',
+			    }).done(function(atividade1){
+			    	if(terminei === 2){
+			    		termineiAsAtividades();
+			    	}else{
+			    		terminei++;
+			    	}
+			    });
+
+			    $.ajax({
+			        url:'http://karatekid.instaweb.com.br:4567/' + atividades.atividades[1].atividade + '?nome=' + nome,
+			        type: 'POST',
+			    }).done(function(atividade1){
+			    	if(terminei === 2){
+			    		termineiAsAtividades();
+			    	}else{
+			    		terminei++;
+			    	}
+			    });
+
+			    $.ajax({
+			        url:'http://karatekid.instaweb.com.br:4567/' + atividades.atividades[2].atividade + '?nome=' + nome,
+			        type: 'POST',
+			    }).done(function(atividade1){
+			    	if(terminei === 2){
+			    		termineiAsAtividades();
+			    	}else{
+			    		terminei++;
+			    	}
+			    });
+			});
+		});
+	
+		function termineiAsAtividades(){
+    	    $.ajax({
+		        url: 'http://karatekid.instaweb.com.br:4567/acabei?nome='+nome,
+		        type: 'POST',
+		    }).done(function(res){});
+	    }
+	});
+
+
+</script>
+</body>
+</html>
