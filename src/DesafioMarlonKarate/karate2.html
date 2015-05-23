@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Karate</title>
+</head>
+<body>
+<meta charset="utf-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var nomeChines;
+	var nome = 'Cassiano';
+	var urlAcesso = 'http://karatekid.instaweb.com.br:4567';
+
+	$.ajax({
+		url: urlAcesso + '/apresentar?nome=' + nome,
+		type: 'POST',
+	}).done(function(apresentar){
+		nomeChines = apresentar.nome;
+		$.ajax({
+			url: urlAcesso + '/tarefas?nome='+ nomeChines,
+			type: 'GET',
+		}).done(function(atividades){
+			$.when(
+				$.ajax({
+					url: urlAcesso + atividades.atividades[0].atividade + '?nome=' + nomeChines,
+					type: 'POST'
+				}),
+
+				$.ajax({
+					url: urlAcesso + atividades.atividades[1].atividade + '?nome=' + nomeChines,
+					type: 'POST'
+				}),
+
+				$.ajax({
+					url: urlAcesso + atividades.atividades[2].atividade + '?nome=' + nomeChines,
+					type: 'POST'
+				})
+			).done(function(){
+				$.ajax({
+					url: urlAcesso + '/acabei?nome='+ nomeChines,
+					type: 'POST'
+				});
+			});
+		});
+	});
+});
+</script>
+</body>
+</html>
