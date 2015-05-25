@@ -70,5 +70,31 @@
 	</div>
 	<script type="text/javascript" src="/components/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="/components/dist/js/bootstrap.js"></script>
+	<script type="text/javascript">
+	$(function(){
+
+		//teclas adicionais permitidas (delete,setas direita e esquerda)
+    	var keyCodesPermitidos = new Array(9,39,37);
+
+		$("input[type=number]").keydown(function(event) {
+			//alert(event.keyCode);
+
+			var tecla = (window.event) ? event.keyCode : event.which;
+
+			if ($.inArray( tecla, keyCodesPermitidos ) != -1){
+       	 		return true;
+    		}  
+
+			if ((tecla > 47 && tecla < 58))
+				return true;
+			else {
+				if (tecla != 8)
+					return false;
+				else
+					return true;
+			}
+		});
+	});
+	</script>
 </body>
 </html>
