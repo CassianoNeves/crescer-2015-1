@@ -42,8 +42,13 @@ public class FilmeDao {
 					rs.getInt( "ano" ),
 					rs.getString( "sinopse" ),
 					rs.getString( "imagem" ));
+			filme.setIdFilme( rs.getInt( "idFilme" ));
 			return filme;
 		});	
+	}
+	
+	public void excluir( int idFilme ){
+		jdbcTemplate.update( "DELETE from Filme where idFilme = ?", idFilme );
 	}
 
 

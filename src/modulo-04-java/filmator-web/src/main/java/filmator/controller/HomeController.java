@@ -44,13 +44,13 @@ public class HomeController {
 			System.out.println("Errooou");
 		}
 		
-		return "listar";
+		return "redirect:/listar";
 	}
 	
 	@RequestMapping(value = "/excluir", method = RequestMethod.GET)
-	public String excluir( Model model ){
-		
-		return null;
+	public String excluir( Model model, @RequestParam int idFilme ){
+		filmeDao.excluir( idFilme );
+		return "redirect:/listar";
 	}
 	
 	
