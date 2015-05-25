@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta chaset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/components/dist/css/bootstrap.css">
+	<title>Cadastro de Filmes</title>
+	<style type="text/css">
+		html, body{
+			height: 100%;
+		}
+
+		.row{
+			margin-top: 20px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container vertica-center">
+		<div class="row ">
+			<div class="col-xs-4 col-md-4 col-lg-4">
+			</div>
+
+			<div class="col-xs-4 col-md-4 col-lg-4">
+				<form action="/salvar" method="POST">
+					<div class="row text-center">
+						<label for="nome">Título:</label>
+						<input name="nome" type="text" class="form-control"/>
+					</div>
+
+					<div class="row text-center">
+						<label>Genero:</label>
+						<select class="form-control">
+							{{#todosGeneros}}
+							<option>{{nome}}</option>
+							{{/todosGeneros}}
+						</select>
+					</div>
+
+					<div class="row text-center">
+						<label for="ano">Ano Lançamento:</label>
+						<input name="ano" type="number" class="form-control"/>
+					</div>
+
+					<div class="row text-center">
+						<label for="sinopse">Sinopse:</label>
+						<textarea name="sinopse" type="text" class="form-control"></textarea>
+					</div>
+
+					<div class="row text-center">
+						<label for="imagem">URL imagem:</label>
+						<input name="imagem" type="url" pattern="https?://.+" required class="form-control"/> 
+					</div>
+
+					<div class="row text-center">
+						
+						<input value="Cadastrar" type="submit" class="btn btn-default"/> 
+					</div>
+
+
+				</form>
+			</div>
+
+			<div class="col-xs-4 col-md-4 col-lg-4">
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/components/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="/components/dist/js/bootstrap.js"></script>
+</body>
+</html>
