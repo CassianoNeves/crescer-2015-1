@@ -22,7 +22,7 @@
 			</div>
 
 			<div class="col-xs-4 col-md-4 col-lg-4">
-				<form action="/salvar" method="POST">
+				<form action="/inserir" method="POST">
 					<div class="row text-center">
 						<label for="nome">Título:</label>
 						<input name="nome" type="text" class="form-control"/>
@@ -30,9 +30,10 @@
 
 					<div class="row text-center">
 						<label>Genero:</label>
-						<select class="form-control">
+						<select name="genero" class="form-control" required>
+							<option value="">-- Selecione --</option>
 							{{#todosGeneros}}
-							<option>{{nome}}</option>
+							<option value="{{.}}">{{nome}}</option>
 							{{/todosGeneros}}
 						</select>
 					</div>
@@ -53,12 +54,14 @@
 					</div>
 
 					<div class="row text-center">
-						
-						<input value="Cadastrar" type="submit" class="btn btn-default"/> 
+						<input width="150px" value="Cadastrar" type="submit" class="btn btn-primary"/> 
 					</div>
 
-
 				</form>
+
+				<div class="row text-center">
+					<a href="/listar"><button width="150px"	class="btn btn-default">Listar</button></a>
+				</div>
 			</div>
 
 			<div class="col-xs-4 col-md-4 col-lg-4">

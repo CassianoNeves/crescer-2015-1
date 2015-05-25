@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta chaset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/components/dist/css/bootstrap.css">
+	<title>Listar Filmes</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Generto</th>
+						<th>Ano</th>
+						<th>Sinopse</th>
+						<th>Imagem</th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{#filmes}}
+						<tr>
+							<td>{{nome}}</td>
+							<td>{{genero.nome}}</td>
+							<td>{{ano}}</td>
+							<td>{{sinopse}}</td>
+							<td><img width="100px" src="{{imagem}}"></td>
+							<td><a href="/excluir"><button class="btn btn-danger">Excuir</button></a></td>
+						</tr>
+					{{/filmes}}
+				</tbody>
+			</table>
+
+			<a href="/"><button class="btn btn-default">Cadastrar</button></a>	
+
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/components/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="/components/dist/js/bootstrap.js"></script>
+</body>
+</html>

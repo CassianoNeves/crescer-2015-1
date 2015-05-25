@@ -1,17 +1,51 @@
 package filmator.dao;
 
-import java.util.Arrays;
+import java.sql.ResultSet;
 import java.util.List;
 
-import filmator.model.Filme;
 
+import javax.inject.Inject;
+
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
+
+import filmator.model.Filme;import filmator.model.Genero;
+
+
+@Component
 public class FilmeDao {
 
-	public List<Filme> buscaTodosFilmes(){
-		//Imagina que estes dados estao vindo do banco
-		return Arrays.asList(new Filme("O poderoso chefão"),
-			new Filme("O poderoso chefão II"),
-			new Filme("O poderoso chefão III"));
+	@Inject
+	private JdbcTemplate jdbcTemplate;
+	
+	public void inserir(Filme filme){
+		jdbcTemplate.update("INSERT INTO Filme (nome, "
+				+ "genero, "
+				+ "ano, "
+				+ "sinopse, "
+				+ "imagem) "
+				+ "VALUES (?, ?, ?, ?, ?)", 
+				filme.getNome(), 
+				filme.getGenero().name(), 
+				filme.getAno(), 
+				filme.getSinopse(), 
+				filme.getImagem());
 	}
+	
+	public List<Filme> buscaTodosFilmesJava8(){
+		return jdbcTemplate.query("SELECT * FROM Filme", (ResultSet rs, int rowNum) -> {
+			Genero genero = Genero.valueOf(rs.getString("genero"));
+			Filme filme = new Filme(rs.getString( "nome" ),
+					genero, 
+					rs.getInt( "ano" ),
+					rs.getString( "sinopse" ),
+					rs.getString( "imagem" ));
+			return filme;
+		});	
+	}
+
+
 }
  

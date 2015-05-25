@@ -10,9 +10,14 @@ public class Filme {
 	
 	public Filme() {}
 	
-	public Filme( String nome ) {
+	public Filme( String nome, Genero genero, int ano, String sinopse, String imagem ) {
 		this.nome = nome;
+		this.genero = genero;
+		this.ano = ano;
+		this.sinopse = sinopse;
+		this.imagem = imagem;
 	}
+	
 	public Genero getGenero() {
 		return genero;
 	}
