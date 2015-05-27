@@ -13,6 +13,10 @@
 			margin-top: 50px;
 		}
 
+		.vermelho{
+			color: red;
+		}
+
 	</style>
 </head>
 <body>
@@ -29,18 +33,23 @@
 
 					<div class="row">
 						<label class="margin-top-50">Usuário:</label>
-						<input type="text" name="usuario" placeholder="Ex: Cassiano" class="form-control margin-bottom-30 "/>
+						<input type="text" name="nome" placeholder="Ex: Cassiano" class="form-control margin-bottom-30 " required/>
 					</div>
 
 					<div class="row">
 						<label>Senha:</label>
-						<input type="password" name="senha" placeholder="*************" class="form-control margin-bottom-30"/>
+						<input type="password" name="senha" placeholder="*************" class="form-control margin-bottom-30" required/>
 					</div>
 
 					<div class="row text-center">
 						<input type="submit" value="Entrar" class="btn btn-primary">
 					</div>
 				</form>
+				{{#erro}}
+				<div class="row">
+					<h2 class="vermelho">{{erro}}</h2>
+				</div>
+				{{/erro}}
 			</div>
 			
 			<div class="col-xs-4 col-md-4 col-lg-4"></div>

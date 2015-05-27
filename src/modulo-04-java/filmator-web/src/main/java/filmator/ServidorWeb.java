@@ -15,7 +15,7 @@ public class ServidorWeb {
 	
 	@Inject
 	private MustacheProperties mustache;
-
+	
 	@Bean
 	public CustomMustacheViewResolver viewResolver(com.samskivert.mustache.Mustache.Compiler mustacheCompiler){
 		CustomMustacheViewResolver resolver = new CustomMustacheViewResolver();
