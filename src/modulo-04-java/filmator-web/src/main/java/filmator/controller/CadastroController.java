@@ -16,31 +16,20 @@ import filmator.model.Genero;
 import filmator.model.Usuario;
 
 @Controller
-public class HomeController {
+public class CadastroController {
 	
 	@Inject 
 	FilmeDao filmeDao;
 	
 	@RequestMapping( value = "/cadastro", method = RequestMethod.GET )
 	public String home( HttpSession session, Model model ) {
-		
-		
-		Usuario usuarioLogado = (Usuario) session.getAttribute( "usuarioLogado");
 		model.addAttribute( "todosGeneros", Genero.values() );
-		model.addAttribute( "nomeUsuario", usuarioLogado.getNome() );
 		return "cadastro";
-	}
-	
-	@RequestMapping( value = "/listar", method = RequestMethod.GET )
-	public String listar( Model model ) {
-		model.addAttribute( "filmes", filmeDao.buscaTodosFilmesJava8() );
-		return "listar";
 	}
 	
 //	@ResponseBody
 	@RequestMapping(value = "/inserir", method = RequestMethod.POST)
 	public String inserir(Model model, Filme filme) {
-		
 		try {
 			filmeDao.inserir(filme);
 		} catch (Exception e) {

@@ -50,7 +50,5 @@ public class FilmeDao {
 	public void excluir( int idFilme ){
 		jdbcTemplate.update( "DELETE from Filme where idFilme = ?", idFilme );
 	}
-
-
 }
  

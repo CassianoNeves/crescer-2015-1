@@ -15,7 +15,6 @@ import filmator.model.Usuario;
 @Controller
 public class UsuarioController {
 	
-	
 	@Inject 
 	UsuarioDao usuarioDao;
 	
@@ -37,5 +36,4 @@ public class UsuarioController {
 		
 		return "redirect:/login?error=true";
 	}
-
 }
