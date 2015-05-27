@@ -21,10 +21,15 @@ public class HomeController {
 	@Inject 
 	FilmeDao filmeDao;
 	
+	private boolean identificado = false;
+	
 	@RequestMapping( value = "/", method = RequestMethod.GET )
 	public String home( Model model ) {
-		model.addAttribute( "todosGeneros", Genero.values() );
-		return "cadastro";
+		if( identificado == true ){
+			model.addAttribute( "todosGeneros", Genero.values() );
+			return "cadastro";
+		} else
+			return "login";
 	}
 	
 	@RequestMapping( value = "/listar", method = RequestMethod.GET )
@@ -51,6 +56,11 @@ public class HomeController {
 	public String excluir( Model model, @RequestParam int idFilme ){
 		filmeDao.excluir( idFilme );
 		return "redirect:/listar";
+	}
+	
+	@RequestMapping(value = "/excluir", method = RequestMethod.POST)
+	public String validaUsuario( Model model){
+		return null;
 	}
 	
 	
