@@ -16,35 +16,53 @@ public class UsuarioDao {
 	@Inject
 	private JdbcTemplate jdbcTemplate;
 
-	public boolean existeUsuario( Usuario usuario ){
+	public Usuario existeUsuario( Usuario usuario ){
 		
-		List<Usuario> usuarios = jdbcTemplate.query( "SELECT NOME, SENHA FROM USUARIO WHERE NOME = ? AND SENHA = ?",
+		List<Usuario> usuarios = jdbcTemplate.query( "SELECT * FROM USUARIO WHERE NOME = ? OR EMAIL = ? AND SENHA = ?",
 				(ResultSet rs, int rowNum) -> {
-					Usuario usuarioRetorno = new Usuario( rs.getString( "nOme" ), rs.getString( "senha" ) );
+					Usuario usuarioRetorno = new Usuario( rs.getString( "nome" ),
+							                              rs.getString( "email" ),
+											              rs.getString( "senha" ),
+											              rs.getBoolean( "admin") );
 					return usuarioRetorno;
 				},
+				usuario.getNome(),
 				usuario.getNome(),
 				usuario.getSenha() );
 		
 		if( usuarios.size() == 1 ){
-			return true;
+			return usuarios.get(0);
 		}
 		
-		return false;
-		
+		return null;
 	}
 	
 	public void inserirUsuario( Usuario usuario ){
-		jdbcTemplate.update( "INSERT INTO (NOME, " +
+		jdbcTemplate.update( "INSERT INTO USUARIO(NOME, " +
 				"EMAIL, " +
-				"SENHA) " +
-				"VALUES (?, ?, ?)",
+				"SENHA, " +
+				"ADMIN) " +
+				"VALUES (?, ?, ?, ?)",
 				usuario.getNome(),
 				usuario.getEmail(),
-				usuario.getSenha());
+				usuario.getSenha(),
+				usuario.isAdmin());
 	}
 	
+	public List<Usuario> buscaTodosUsuarios(){
+		return jdbcTemplate.query("SELECT * FROM USUARIO", ( ResultSet rs, int rowNum ) ->{
+			 Usuario usuario = new Usuario( rs.getString( "nome" ),
+                    		    rs.getString( "email" ),
+                    		    rs.getString( "senha" ),
+                    		    rs.getBoolean( "admin") );
+			 usuario.setIdUsuario( rs.getInt( "idUsuario" ) );
+			 return usuario;
+		});
+	}
 	
+	public void excluir( int idUsuario ){
+		jdbcTemplate.update( "DELETE FROM USUARIO WHERE IDUSUARIO = ?", idUsuario );
+	}
 	
 	
 	

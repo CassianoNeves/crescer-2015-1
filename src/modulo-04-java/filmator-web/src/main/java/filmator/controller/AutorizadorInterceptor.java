@@ -16,7 +16,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 		String uri = request.getRequestURI();
 	      if( uri.endsWith("login") || 
 	    		  uri.endsWith("naoLogado") ||
-	    		  uri.endsWith("validarUsuario") ||
+	    		  uri.endsWith("/usuario/validar") ||
 	    		  uri.endsWith("scripts") ||
 	              uri.contains("resources") ){
 	        return true;
@@ -26,7 +26,7 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter {
 	        return true;
 	      }
 		
-	    response.sendRedirect("login");
+	    response.sendRedirect("/login");
 	    return false;  
 	  }
 }

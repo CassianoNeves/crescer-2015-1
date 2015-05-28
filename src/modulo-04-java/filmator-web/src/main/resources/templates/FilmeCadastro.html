@@ -5,10 +5,6 @@
 	<link rel="stylesheet" type="text/css" href="/components/dist/css/bootstrap.css">
 	<title>Cadastro de Filmes</title>
 	<style type="text/css">
-		html, body{
-			height: 100%;
-		}
-
 		.row{
 			margin-top: 20px;
 		}
@@ -16,13 +12,16 @@
 	</style>
 </head>
 <body>
-	<div class="container-fluit">
+	<div class="container">
 		{{> navbar}}
 		<div class="row">
 			<div class="col-xs-4 col-md-4 col-lg-4">
 			</div>
 
 			<div class="col-xs-4 col-md-4 col-lg-4">
+				<div class="row text-center">
+					<h2>Cadastro de Filme</h2>
+				</div>
 				<form action="/filme/inserir" method="POST">
 					<div class="row text-center">
 						<label for="nome">Título: {{usuarioLogado.nome}}</label>
@@ -57,7 +56,6 @@
 					<div class="row text-center">
 						<input width="150px" value="Cadastrar" type="submit" class="btn btn-primary"/> 
 					</div>
-
 				</form>
 			</div>
 

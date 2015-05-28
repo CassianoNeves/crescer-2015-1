@@ -28,9 +28,16 @@ public class UsuarioController {
 			return "login";
 	}
 	
-	@RequestMapping(value = "/validarUsuario", method = RequestMethod.POST)
-	public String validaUsuario(Model model, HttpSession session, Usuario usuario ){
-		if( usuarioDao.existeUsuario( usuario ) ){
+	@RequestMapping(value = "/sair", method = RequestMethod.GET)
+	public String deslogarUsuario( HttpSession session ){
+		session.invalidate();
+		return "redirect:/login";
+	}
+	
+	@RequestMapping(value = "/usuario/validar", method = RequestMethod.POST)
+	public String usuarioValidar(Model model, HttpSession session, Usuario usuarioLogado ){
+		Usuario usuario = usuarioDao.existeUsuario( usuarioLogado );
+		if( usuario != null ){
 			session.setAttribute( "usuarioLogado" , usuario );
 			return "redirect:/filme/cadastro";
 		}
@@ -38,15 +45,28 @@ public class UsuarioController {
 		return "redirect:/login?error=true";
 	}
 	
-	@RequestMapping(value = "/sair", method = RequestMethod.GET)
-	public String deslogarUsuario( HttpSession session ){
-		session.invalidate();
-		return "redirect:/login";
+	@RequestMapping(value = "/usuario/cadastro", method = RequestMethod.GET)
+	public String usuarioCadastro( Usuario usuario ){
+		return "UsuarioCadastro";
 	}
 	
-	public String inserirUsuario( Usuario usuario ){
+	@RequestMapping(value = "/usuario/inserir", method = RequestMethod.POST)
+	public String usuarioInserir(Model model, Usuario usuario ){
 		usuarioDao.inserirUsuario( usuario );
-		return "";
+		model.addAttribute( "ok", "Usuário insirido com sucesso" );
+		return "redirect:/usuario/listar";
+	}
+	
+	@RequestMapping(value = "/usuario/listar", method = RequestMethod.GET)
+	public String usuarioListar(Model model ){
+		model.addAttribute( "usuarios", usuarioDao.buscaTodosUsuarios() );
+		return "UsuarioListar";
+	}
+	
+	@RequestMapping(value = "/usuario/excluir", method = RequestMethod.GET)
+	public String usuarioExcluir( @RequestParam int idUsuario ){
+		usuarioDao.excluir( idUsuario );
+		return "redirect:/usuario/listar";
 	}
 	
 	

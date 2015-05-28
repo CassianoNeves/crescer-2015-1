@@ -20,14 +20,14 @@ public class FilmeController {
 	FilmeDao filmeDao;
 	
 	@RequestMapping( value = "/filme/cadastro", method = RequestMethod.GET )
-	public String home( HttpSession session, Model model ) {
+	public String filmeCadastro( HttpSession session, Model model ) {
 		model.addAttribute( "todosGeneros", Genero.values() );
 		return "FilmeCadastro";
 	}
 	
 //	@ResponseBody
 	@RequestMapping(value = "/filme/inserir", method = RequestMethod.POST)
-	public String inserir(Model model, Filme filme) {
+	public String filmeInserir(Model model, Filme filme) {
 		try {
 			filmeDao.inserir(filme);
 		} catch (Exception e) {
@@ -35,13 +35,20 @@ public class FilmeController {
 			System.out.println("Errooou");
 		}
 		
-		return "redirect:/FilmeListar";
+		return "redirect:/filme/listar";
 	}
 	
 	@RequestMapping(value = "/filme/excluir", method = RequestMethod.GET)
-	public String excluir( Model model, @RequestParam int idFilme ){
+	public String filmeExcluir( Model model, @RequestParam int idFilme ){
 		filmeDao.excluir( idFilme );
-		return "redirect:/FilmeListar";
+		return "redirect:/filme/listar";
+	}
+	
+	@RequestMapping( value = "/filme/listar", method = RequestMethod.GET )
+	public String listar( HttpSession session, Model model ) {
+		model.addAttribute( "todosGeneros", Genero.values() );
+		model.addAttribute( "filmes", filmeDao.buscaTodosFilmesJava8() );
+		return "FilmeListar";
 	}
 }
 

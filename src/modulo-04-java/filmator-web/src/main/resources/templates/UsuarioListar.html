@@ -3,7 +3,7 @@
 <head>
 	<meta chaset="utf-8">
 	<link rel="stylesheet" type="text/css" href="/components/dist/css/bootstrap.css">
-	<title>Lista de Filmes</title>
+	<title>Lista de Usuários</title>
 	<style type="text/css">
 		.titulo{
 			margin-top: 50px;
@@ -12,12 +12,11 @@
 	</style>
 </head>
 <body>
-		
 	<div class="container">
 		{{> navbar}}
 
 		<div class="row titulo text-center">
-			<h2>Lista de Filmes</h2>
+			<h2>Lista de Usuários</h2>
 		</div>
 
 		<div class="row">
@@ -25,30 +24,28 @@
 				<thead>
 					<tr>
 						<th>Nome</th>
-						<th>Generto</th>
-						<th>Ano</th>
-						<th>Sinopse</th>
-						<th>Imagem</th>
-						<th></th>
+						<th>Email</th>
+						<th>Senha</th>
+						<th>Admistrador</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					{{#filmes}}
+					{{#usuarios}}
 						<tr>
 							<td>{{nome}}</td>
-							<td>{{genero.nome}}</td>
-							<td>{{ano}}</td>
-							<td>{{sinopse}}</td>
-							<td><img width="100px" src="{{imagem}}" class="img-rounded img-responsive"></td>
-							<td><a href="/filme/excluir?idFilme={{idFilme}}"><button class="btn btn-danger">Excuir</button></a></td>
+							<td>{{email}}</td>
+							<td>{{senha}}</td>
+							<td>{{admin}}</td>
+							<td><a href="/usuario/excluir?idUsuario={{idUsuario}}"><button class="btn btn-danger">Excluir</button></a></td>
 						</tr>
-					{{/filmes}}
+					{{/usuarios}}
 				</tbody>
 			</table>
+		</div>
 
-			<a href="/filme/cadastro"><button class="btn btn-default">Cadastrar</button></a>	
-
+		<div class="row">
+			<a href="/usuario/cadastro"><button class="btn btn-default">Cadastrar</button></a>
 		</div>
 	</div>
 	{{> scripts}}
