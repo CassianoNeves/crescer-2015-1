@@ -39,7 +39,7 @@ public class UsuarioController {
 		Usuario usuario = usuarioDao.existeUsuario( usuarioLogado );
 		if( usuario != null ){
 			session.setAttribute( "usuarioLogado" , usuario );
-			return "redirect:/filme/cadastro";
+			return "redirect:/filme/listar";
 		}
 		
 		return "redirect:/login?error=true";

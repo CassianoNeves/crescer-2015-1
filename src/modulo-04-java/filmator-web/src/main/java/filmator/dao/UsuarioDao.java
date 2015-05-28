@@ -24,6 +24,7 @@ public class UsuarioDao {
 							                              rs.getString( "email" ),
 											              rs.getString( "senha" ),
 											              rs.getBoolean( "admin") );
+					usuarioRetorno.setIdUsuario( rs.getInt( "idUsuario") );
 					return usuarioRetorno;
 				},
 				usuario.getNome(),

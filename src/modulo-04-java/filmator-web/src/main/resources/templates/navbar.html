@@ -9,10 +9,11 @@
 		<div class="navbar-header">
 			<a class="navbar-brand" href="/filme/listar">Filmes</a>
 		</div>
-
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/usuario/listar">Usuários</a>
-		</div>
+		{{#usuarioLogado.admin}}
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/usuario/listar">Usuários</a>
+			</div>
+		{{/usuarioLogado.admin}}
 
 		<ul class="nav navbar-nav navbar-right">
 			<li class="nav-text-center">Bem-Vindo <b>{{usuarioLogado.nome}}</b>!</li>

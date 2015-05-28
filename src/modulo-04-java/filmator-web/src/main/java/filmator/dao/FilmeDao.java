@@ -34,7 +34,7 @@ public class FilmeDao {
 				filme.getImagem());
 	}
 	
-	public List<Filme> buscaTodosFilmesJava8(){
+	public List<Filme> buscaTodosFilmes(){
 		return jdbcTemplate.query("SELECT * FROM Filme", (ResultSet rs, int rowNum) -> {
 			Genero genero = Genero.valueOf(rs.getString("genero"));
 			Filme filme = new Filme(rs.getString( "nome" ),
@@ -43,6 +43,9 @@ public class FilmeDao {
 					rs.getString( "sinopse" ),
 					rs.getString( "imagem" ));
 			filme.setIdFilme( rs.getInt( "idFilme" ));
+			
+			
+			
 			return filme;
 		});	
 	}

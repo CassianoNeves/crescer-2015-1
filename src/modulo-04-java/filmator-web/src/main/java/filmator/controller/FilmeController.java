@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import filmator.dao.FilmeDao;
 import filmator.model.Filme;
 import filmator.model.Genero;
+import filmator.model.Usuario;
 
 @Controller
 public class FilmeController {
@@ -20,7 +21,7 @@ public class FilmeController {
 	FilmeDao filmeDao;
 	
 	@RequestMapping( value = "/filme/cadastro", method = RequestMethod.GET )
-	public String filmeCadastro( HttpSession session, Model model ) {
+	public String filmeCadastro( Model model ) {
 		model.addAttribute( "todosGeneros", Genero.values() );
 		return "FilmeCadastro";
 	}
@@ -45,10 +46,13 @@ public class FilmeController {
 	}
 	
 	@RequestMapping( value = "/filme/listar", method = RequestMethod.GET )
-	public String listar( HttpSession session, Model model ) {
+	public String filmeListar( HttpSession session, Model model ) {
+		Usuario usuario = (Usuario) session.getAttribute( "usuarioLogado" );
+		
 		model.addAttribute( "todosGeneros", Genero.values() );
-		model.addAttribute( "filmes", filmeDao.buscaTodosFilmesJava8() );
+		model.addAttribute( "filmes", filmeDao.buscaTodosFilmes() );
 		return "FilmeListar";
 	}
+	
 }
 

@@ -27,6 +27,7 @@
 						<th>Email</th>
 						<th>Senha</th>
 						<th>Admistrador</th>
+						<th></th>
 					</tr>
 				</thead>
 
@@ -36,17 +37,24 @@
 							<td>{{nome}}</td>
 							<td>{{email}}</td>
 							<td>{{senha}}</td>
-							<td>{{admin}}</td>
-							<td><a href="/usuario/excluir?idUsuario={{idUsuario}}"><button class="btn btn-danger">Excluir</button></a></td>
+							<td>{{#admin}}Sim{{/admin}} {{^admin}}NOOO{{/admin}}</td>
+							
+							<td>
+								{{#usuarioLogado.admin}}
+									<a href="/usuario/excluir?idUsuario={{idUsuario}}"><button class="btn btn-danger">
+									Excluir</button></a>
+								{{/usuarioLogado.admin}}
+							</td>
 						</tr>
 					{{/usuarios}}
 				</tbody>
 			</table>
 		</div>
-
+		
 		<div class="row">
 			<a href="/usuario/cadastro"><button class="btn btn-default">Cadastrar</button></a>
 		</div>
+
 	</div>
 	{{> scripts}}
 </body>

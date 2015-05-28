@@ -14,5 +14,4 @@ public class ControllerHelper {
 	public Usuario usuarioLogado(HttpSession session ){
 		return (Usuario) session.getAttribute("usuarioLogado");
 	}
-
 }
