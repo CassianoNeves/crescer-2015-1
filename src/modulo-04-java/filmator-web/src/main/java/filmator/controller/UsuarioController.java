@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import filmator.dao.UsuarioDao;
 import filmator.model.Usuario;
 
+
 @Controller
 public class UsuarioController {
 	
@@ -31,9 +32,26 @@ public class UsuarioController {
 	public String validaUsuario(Model model, HttpSession session, Usuario usuario ){
 		if( usuarioDao.existeUsuario( usuario ) ){
 			session.setAttribute( "usuarioLogado" , usuario );
-			return "redirect:/cadastro";
+			return "redirect:/filme/cadastro";
 		}
 		
 		return "redirect:/login?error=true";
 	}
+	
+	@RequestMapping(value = "/sair", method = RequestMethod.GET)
+	public String deslogarUsuario( HttpSession session ){
+		session.invalidate();
+		return "redirect:/login";
+	}
+	
+	public String inserirUsuario( Usuario usuario ){
+		usuarioDao.inserirUsuario( usuario );
+		return "";
+	}
+	
+	
+	
+	
+	
+	
 }

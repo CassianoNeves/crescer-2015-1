@@ -10,25 +10,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import filmator.dao.FilmeDao;
-import filmator.dao.UsuarioDao;
 import filmator.model.Filme;
 import filmator.model.Genero;
-import filmator.model.Usuario;
 
 @Controller
-public class CadastroController {
+public class FilmeController {
 	
 	@Inject 
 	FilmeDao filmeDao;
 	
-	@RequestMapping( value = "/cadastro", method = RequestMethod.GET )
+	@RequestMapping( value = "/filme/cadastro", method = RequestMethod.GET )
 	public String home( HttpSession session, Model model ) {
 		model.addAttribute( "todosGeneros", Genero.values() );
-		return "cadastro";
+		return "FilmeCadastro";
 	}
 	
 //	@ResponseBody
-	@RequestMapping(value = "/inserir", method = RequestMethod.POST)
+	@RequestMapping(value = "/filme/inserir", method = RequestMethod.POST)
 	public String inserir(Model model, Filme filme) {
 		try {
 			filmeDao.inserir(filme);
@@ -37,13 +35,13 @@ public class CadastroController {
 			System.out.println("Errooou");
 		}
 		
-		return "redirect:/listar";
+		return "redirect:/FilmeListar";
 	}
 	
-	@RequestMapping(value = "/excluir", method = RequestMethod.GET)
+	@RequestMapping(value = "/filme/excluir", method = RequestMethod.GET)
 	public String excluir( Model model, @RequestParam int idFilme ){
 		filmeDao.excluir( idFilme );
-		return "redirect:/listar";
+		return "redirect:/FilmeListar";
 	}
 }
 

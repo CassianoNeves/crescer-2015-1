@@ -18,9 +18,9 @@ public class UsuarioDao {
 
 	public boolean existeUsuario( Usuario usuario ){
 		
-		List<Usuario> usuarios = jdbcTemplate.query( "SELECT * FROM USUARIO WHERE NAME = ? AND SENHA = ?",
+		List<Usuario> usuarios = jdbcTemplate.query( "SELECT NOME, SENHA FROM USUARIO WHERE NOME = ? AND SENHA = ?",
 				(ResultSet rs, int rowNum) -> {
-					Usuario usuarioRetorno = new Usuario( rs.getString( "name" ), rs.getString( "senha" ) );
+					Usuario usuarioRetorno = new Usuario( rs.getString( "nOme" ), rs.getString( "senha" ) );
 					return usuarioRetorno;
 				},
 				usuario.getNome(),
@@ -33,4 +33,19 @@ public class UsuarioDao {
 		return false;
 		
 	}
+	
+	public void inserirUsuario( Usuario usuario ){
+		jdbcTemplate.update( "INSERT INTO (NOME, " +
+				"EMAIL, " +
+				"SENHA) " +
+				"VALUES (?, ?, ?)",
+				usuario.getNome(),
+				usuario.getEmail(),
+				usuario.getSenha());
+	}
+	
+	
+	
+	
+	
 }
