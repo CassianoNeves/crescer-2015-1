@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta chaset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/components/dist/css/bootstrap.css">
+	<title>Filmator Home</title>
+	<style type="text/css">
+		.titulo{
+			padding: 20px 20px;
+		}
+
+		.img-filme{
+			padding: 15px 15px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		{{> navbar}}
+		<br><br>
+
+		<div class="row text-center">
+			<h1 class="titulo">Filmator</h1>	
+		</div>
+		
+		<div class="row text-center">
+			{{#filmes}}
+			<div class="col-xs-3 col-md-3 col-lg-3 img-filme">
+				<a href="/filme/perfil?idFilme={{idFilme}}"><img src="{{imagem}}" width="80%" class="img-rounded"></a>
+			</div>
+			{{/filmes}}
+		</div>
+
+
+	</div>
+	{{> scripts}}
+</body>
+</html>

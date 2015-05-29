@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta chaset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/components/dist/css/bootstrap.css">
+	<title>{{filme.nome}}</title>
+	<style type="text/css">
+	#sinopse{
+		margin-bottom: 30px;
+		margin-top: 50px;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		{{> navbar}}
+		<br><br><br><br>
+		<div class="row">
+			<div class="col-xs-5 col-md-5 col-lg-5">
+				<img src="{{filme.imagem}}" width="70%" class="img-rounded">
+			</div>
+
+			<div class="col-xs-6 col-md-6 col-lg-6">
+				<div class="row">
+					<h2>{{filme.nome}}</h2>
+				</div>
+
+				<span>Ano: {{filme.ano}}</span>
+				<div id="mediaNota"class="row" mediaNota="{{filme.mediaNota}}" alt="Nota média">
+					<img value="1" class="star" src="/img/star1.png" width="20px">
+					<img value="2" class="star" src="/img/star1.png" width="20px">
+					<img value="3" class="star" src="/img/star1.png" width="20px">
+					<img value="4" class="star" src="/img/star1.png" width="20px">
+					<img value="5" class="star" src="/img/star1.png" width="20px">
+				</div>
+
+				<div id="sinopse" class="row">
+					<p>{{filme.sinopse}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{> scripts}}
+	<script type="text/javascript">
+	$(function(){
+
+		var mediaNota = $( '#mediaNota' ).attr('mediaNota');
+
+		$( '#mediaNota' ).find('img[value="'+mediaNota+'"]')
+		.attr('src', '/img/star0.png')
+		.prevAll().attr('src', '/img/star0.png');
+	});
+	</script>
+</body>
+</html>

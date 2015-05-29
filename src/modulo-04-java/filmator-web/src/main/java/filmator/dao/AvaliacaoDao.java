@@ -19,5 +19,4 @@ public class AvaliacaoDao {
 				avaliacao.getIdUsuario(),
 				avaliacao.getNota() );
 	}
-
 }

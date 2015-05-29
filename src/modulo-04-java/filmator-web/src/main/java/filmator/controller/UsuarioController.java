@@ -28,21 +28,21 @@ public class UsuarioController {
 			return "login";
 	}
 	
-	@RequestMapping(value = "/sair", method = RequestMethod.GET)
-	public String deslogarUsuario( HttpSession session ){
-		session.invalidate();
-		return "redirect:/login";
-	}
-	
 	@RequestMapping(value = "/usuario/validar", method = RequestMethod.POST)
 	public String usuarioValidar(Model model, HttpSession session, Usuario usuarioLogado ){
 		Usuario usuario = usuarioDao.existeUsuario( usuarioLogado );
 		if( usuario != null ){
 			session.setAttribute( "usuarioLogado" , usuario );
-			return "redirect:/filme/listar";
+			return "redirect:/filme/home";
 		}
 		
 		return "redirect:/login?error=true";
+	}
+	
+	@RequestMapping(value = "/sair", method = RequestMethod.GET)
+	public String deslogarUsuario( HttpSession session ){
+		session.invalidate();
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(value = "/usuario/cadastro", method = RequestMethod.GET)

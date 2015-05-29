@@ -47,11 +47,26 @@ public class FilmeController {
 	
 	@RequestMapping( value = "/filme/listar", method = RequestMethod.GET )
 	public String filmeListar( HttpSession session, Model model ) {
-		Usuario usuario = (Usuario) session.getAttribute( "usuarioLogado" );
-		
-		model.addAttribute( "todosGeneros", Genero.values() );
 		model.addAttribute( "filmes", filmeDao.buscaTodosFilmes() );
 		return "FilmeListar";
+	}
+	
+	@RequestMapping( value = "/naoLogado", method = RequestMethod.GET )
+	public String naoLogado( Model model ) {
+	
+		return "naoLogado";
+	}
+	
+	@RequestMapping( value = "/filme/home", method = RequestMethod.GET )
+	public String filmeHome( Model model ) {
+		model.addAttribute( "filmes", filmeDao.buscaTodosFilmes() );
+		return "home";
+	}
+	
+	@RequestMapping( value = "/filme/perfil", method = RequestMethod.GET )
+	public String filmePerfil( Model model, @RequestParam int idFilme ) {
+		model.addAttribute( "filme", filmeDao.buscarFilme( idFilme ) );
+		return "perfil";
 	}
 	
 }

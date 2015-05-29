@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:8888/filme/listar -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta chaset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./Lista de Filmes_files/bootstrap.css">
+	<title>Lista de Filmes</title>
+	<style type="text/css">
+		.titulo{
+			margin-top: 50px;
+			margin-bottom: 30px;
+		}
+	</style>
+</head>
+<body>
+		
+	<div class="container">
+		<style type="text/css">
+	.nav-text-center{
+	  padding: 14px 15px;
+	}
+
+</style>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="./Lista de Filmes_files/Lista de Filmes.html">Filmes</a>
+		</div>
+			<div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:8888/usuario/listar">Usuários</a>
+			</div>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li class="nav-text-center">Bem-Vindo <b>cassio</b>!</li>
+			<li class="dropdown">
+				<a href="http://localhost:8888/filme/listar#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="http://localhost:8888/sair">Sair</a></li>
+				</ul>
+			</li>
+		</ul>
+
+	</div>
+</nav>
+
+		<div class="row titulo text-center">
+			<h2>Lista de Filmes</h2>
+		</div>
+
+		<div class="row">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Generto</th>
+						<th>Ano</th>
+						<th>Sinopse</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+						<tr medianota="3">
+							<td>Star Wars</td>
+							<td>Ação</td>
+							<td>2000</td>
+							<td><div class="row"><p>balbalbalbalblablabla</p></div></td>
+							<td><img width="100px" src="./Lista de Filmes_files/Darth-Vader-voiced-by-Arnold-Schwarzenegger.jpg" class="img-rounded img-responsive"></td>
+							<td>
+								<img value="1" class="star" src="./Lista de Filmes_files/star0.png" width="20px">
+								<img value="2" class="star" src="./Lista de Filmes_files/star0.png" width="20px">
+								<img value="3" class="star" src="./Lista de Filmes_files/star0.png" width="20px">
+								<img value="4" class="star" src="./Lista de Filmes_files/star1.png" width="20px">
+								<img value="5" class="star" src="./Lista de Filmes_files/star1.png" width="20px">
+							</td>				
+							<td>
+								<a href="http://localhost:8888/filme/excluir?idFilme=35">
+									<button class="btn btn-danger">Excuir</button>
+								</a>
+							</td>
+						</tr>
+						<tr medianota="0">
+							<td>sei láá</td>
+							<td>Ação</td>
+							<td>2103</td>
+							<td><div class="row"><p>sdlçaksdkaklsdk aiosdjaiosjd asdjaodsj</p></div></td>
+							<td><img width="100px" src="./Lista de Filmes_files/a-cosmic-history-of-the-illuminati.jpg" class="img-rounded img-responsive"></td>
+							<td>
+								<img value="1" class="star" src="./Lista de Filmes_files/star0.png" width="20px">
+								<img value="2" class="star" src="./Lista de Filmes_files/star0.png" width="20px">
+								<img value="3" class="star" src="./Lista de Filmes_files/star0.png" width="20px">
+								<img value="4" class="star" src="./Lista de Filmes_files/star1.png" width="20px">
+								<img value="5" class="star" src="./Lista de Filmes_files/star1.png" width="20px">
+							</td>				
+							<td>
+								<a href="http://localhost:8888/filme/excluir?idFilme=41">
+									<button class="btn btn-danger">Excuir</button>
+								</a>
+							</td>
+						</tr>
+				</tbody>
+			</table>
+			<div class="row">
+				<a href="http://localhost:8888/filme/cadastro"><button class="btn btn-default">Cadastrar</button></a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="./Lista de Filmes_files/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./Lista de Filmes_files/bootstrap.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+			var mediaNota = $('tr[mediaNota]').attr('mediaNota');
+			$('img[value="'+mediaNota+'"').attr('src', '/img/star0.png').prevAll().attr('src', '/img/star0.png');
+
+			$('.star').hover(function(){
+				if( $( this ).attr('src') === '/img/star1.png'){
+					$( this ).attr('src', '/img/star3.jpg');
+				}
+			}, function(){
+				if( $( this ).attr('src') === '/img/star3.jpg'){
+					$( this ).attr('src', '/img/star1.png');
+				}
+			});
+
+			$('.star').click(function(){
+				$('.star').attr('src','/img/star1.png');
+				$(this).prevAll().attr('src', '/img/star0.png');
+				$(this).attr('src', '/img/star0.png');
+
+				var nota = $( this ).attr('value');
+				var filme = $('.filme').attr('value');
+
+				$.ajax({
+					url: '/filme/avaliar?nota=' + nota + '&idFilme=' + filme,
+					type: 'POST'
+				});
+			});
+		});
+	</script>
+
+</body><object id="b89b3b89-687a-91be-e8a8-f8aa0a9e93b3" width="0" height="0" type="application/gas-events-cef"></object></html>

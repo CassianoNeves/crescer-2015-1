@@ -27,38 +27,35 @@
 						<th>Nome</th>
 						<th>Generto</th>
 						<th>Ano</th>
-						<th>Sinopse</th>
+<!-- 						<th>Sinopse</th> -->
 						<th></th>
 						<th></th>
 						<th></th>
-						
 					</tr>
 				</thead>
 
 				<tbody>
 					{{#filmes}}
-						<tr>
+						<tr class="filme" value="{{idFilme}}" mediaNota="{{mediaNota}}">
 							<td>{{nome}}</td>
 							<td>{{genero.nome}}</td>
 							<td>{{ano}}</td>
-							<td>{{sinopse}}</td>
-							<td><img width="100px" src="{{imagem}}" class="img-rounded img-responsive"></td>
-							<td class="filme" value="{{idFilme}}">
-								<img value="1" class="star" src="/img/star1.png"  width="20px">
+							<!-- <td><div class="row"><p>{{sinopse}}</p></div></td> -->
+							<td><img width="100px" src="{{imagem}}" class="img-rounded"></td>
+							<td >
+								<img value="1" class="star" src="/img/star1.png" width="20px">
 								<img value="2" class="star" src="/img/star1.png" width="20px">
 								<img value="3" class="star" src="/img/star1.png" width="20px">
 								<img value="4" class="star" src="/img/star1.png" width="20px">
 								<img value="5" class="star" src="/img/star1.png" width="20px">
-							</td>	
-							
-								{{#usuarioLogado.admin}}
-								<td>
-									<a href="/filme/excluir?idFilme={{idFilme}}">
-										<button class="btn btn-danger"	>Excuir</button>
-									</a>
-								</td>
-								{{/usuarioLogado.admin}}
-							
+							</td>				
+							{{#usuarioLogado.admin}}
+							<td>
+								<a href="/filme/excluir?idFilme={{idFilme}}">
+									<button class="btn btn-danger"	>Excuir</button>
+								</a>
+							</td>
+							{{/usuarioLogado.admin}}
 						</tr>
 					{{/filmes}}
 				</tbody>
@@ -73,29 +70,41 @@
 	{{> scripts}}
 	<script type="text/javascript">
 		$(function(){
-			$('.star').hover(function(){
-				if( $( this ).attr('src') === '/img/star1.png'){
-					$( this ).attr('src', '/img/star3.jpg');
+
+			$('tr[mediaNota]').each(function(i){
+				var mediaNota = $( this ).attr('mediaNota');
+
+				if(mediaNota === 0 ){
+					$( this ).find('img[value]').attr('mediaNota');
 				}
-			}, function(){
-				if( $( this ).attr('src') === '/img/star3.jpg'){
-					$( this ).attr('src', '/img/star1.png');
-				}
+
+				$( this ).find('img[value="'+mediaNota+'"]')
+				.attr('src', '/img/star0.png')
+				.prevAll().attr('src', '/img/star0.png');
 			});
 
+			// $('.star').hover(function(){
+			// 	if( $( this ).attr('src') === '/img/star1.png'){
+			// 		$( this ).attr('src', '/img/star3.jpg');
+			// 	}
+			// }, function(){
+			// 	if( $( this ).attr('src') === '/img/star3.jpg'){
+			// 		$( this ).attr('src', '/img/star1.png');
+			// 	}
+			// });
+
+
 			$('.star').click(function(){
-				$('.star').attr('src','/img/star1.png');
 				$(this).prevAll().attr('src', '/img/star0.png');
+				$(this).nextAll().attr('src', '/img/star1.png');
 				$(this).attr('src', '/img/star0.png');
 
 				var nota = $( this ).attr('value');
-				var filme = $('.filme').attr('value');
 
+				var filme = $( this ).parent().parent().attr('value');
 				$.ajax({
 					url: '/filme/avaliar?nota=' + nota + '&idFilme=' + filme,
 					type: 'POST'
-				}).done(function(){
-					alert('terminou');
 				});
 			});
 		});

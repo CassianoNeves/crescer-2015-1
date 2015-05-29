@@ -8,15 +8,17 @@ public class Filme {
 	private int ano;
 	private String sinopse;
 	private String imagem;
+	private int mediaNota;
 	
 	public Filme() {}
 	
-	public Filme( String nome, Genero genero, int ano, String sinopse, String imagem ) {
+	public Filme( String nome, Genero genero, int ano, String sinopse, String imagem, int mediaNota ) {
 		this.nome = nome;
 		this.genero = genero;
 		this.ano = ano;
 		this.sinopse = sinopse;
 		this.imagem = imagem;
+		this.mediaNota = mediaNota;
 	}
 	
 	public int getIdFilme() {
@@ -66,6 +68,15 @@ public class Filme {
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
+
+	public int getMediaNota() {
+		return mediaNota;
+	}
+
+	public void setMediaNota(int mediaNota) {
+		this.mediaNota = mediaNota;
+	}
+	
 	
 	
 }

@@ -4,14 +4,18 @@ import java.sql.ResultSet;
 import java.util.List;
 
 
+
 import javax.inject.Inject;
+
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 
-import filmator.model.Filme;import filmator.model.Genero;
+
+import filmator.model.Filme;import filmator.model.Genero;import filmator.model.Usuario;
+
 
 
 @Component
@@ -35,23 +39,44 @@ public class FilmeDao {
 	}
 	
 	public List<Filme> buscaTodosFilmes(){
-		return jdbcTemplate.query("SELECT * FROM Filme", (ResultSet rs, int rowNum) -> {
-			Genero genero = Genero.valueOf(rs.getString("genero"));
-			Filme filme = new Filme(rs.getString( "nome" ),
+		return jdbcTemplate.query("SELECT f.idfilme, f.nome, f.genero, f.ano, f.sinopse, f.imagem, avg(a.nota) as mediaNota "
+					+ "FROM filme f LEFT JOIN avaliacao a "
+					+ "ON f.idfilme = a.idfilme "
+					+ "WHERE situacao = 'A'"
+					+ "GROUP BY f.idfilme, f.nome, f.genero, f.ano, f.sinopse, f.imagem", (ResultSet rs, int rowNum) -> {
+					Genero genero = Genero.valueOf(rs.getString("genero"));
+					Filme filme = new Filme(rs.getString( "nome" ),
 					genero, 
 					rs.getInt( "ano" ),
 					rs.getString( "sinopse" ),
-					rs.getString( "imagem" ));
-			filme.setIdFilme( rs.getInt( "idFilme" ));
-			
-			
+					rs.getString( "imagem" ),
+					rs.getInt( "mediaNota"));
+					filme.setIdFilme( rs.getInt( "idFilme" ));
 			
 			return filme;
 		});	
 	}
 	
+	public Filme buscarFilme( int idFilme ){
+		List<Filme> filmes = jdbcTemplate.query( "SELECT f.idfilme, f.nome, f.genero, f.ano, f.sinopse, f.imagem, avg(a.nota) as mediaNota "
+					+ "FROM filme f LEFT JOIN avaliacao a "
+					+ "ON f.idfilme = a.idfilme "
+					+ "WHERE f.idFilme = ?"
+					+ "GROUP BY f.idfilme, f.nome, f.genero, f.ano, f.sinopse, f.imagem", (ResultSet rs, int rowNum) ->{
+			Genero genero = Genero.valueOf(rs.getString("genero"));
+			Filme filme = new Filme(rs.getString( "nome" ), 
+					genero, rs.getInt( "ano" ), 
+					rs.getString( "sinopse" ),
+					rs.getString( "imagem" ), 
+					rs.getInt( "mediaNota" ));
+			return filme;
+		}, idFilme);
+		
+		return filmes.get(0);
+	}
+	
 	public void excluir( int idFilme ){
-		jdbcTemplate.update( "DELETE from Filme where idFilme = ?", idFilme );
+		jdbcTemplate.update( "UPDATE FILME SET SITUACAO = 'I' WHERE IDFILME = ?", idFilme );
 	}
 }
  
