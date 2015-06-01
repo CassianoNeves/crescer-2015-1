@@ -65,10 +65,10 @@
 		$('[data-toggle="tooltip"]').tooltip();
 
 		function atualizarEstrelasNotaMedia( mediaNota ){
-			var self = $( '#mediaNota' ).find('img[value="'+mediaNota+'"]')
+			var self = $( '#mediaNota' ).find('img[value="'+mediaNota+'"]');
+			self.attr('src', '/img/star0.png');
 			self.prevAll().attr('src', '/img/star0.png');
 			self.nextAll().attr('src', '/img/star1.png');
-			self.attr('src', '/img/star0.png');
 			self.parent().attr('data-original-title', 'Nota média: '+ mediaNota);
 		}
 
@@ -101,16 +101,18 @@
 			$.ajax({
 				url: '/filme/avaliar?nota=' + nota + '&idFilme=' + filme,
 				type: 'POST'
+			}).done(function(){
+				$.ajax({
+					url: '/filme/atualizarMedia?idFilme=' + filme,
+					type: 'GET',
+					contentType: 'json',
+	  				dataType: 'json'
+				}).done(function(notaMedia){
+					atualizarEstrelasNotaMedia( notaMedia );
+				});
 			});
 
-			$.ajax({
-				url: '/filme/atualizarMedia?idFilme=' + filme,
-				type: 'GET',
-				contentType: 'json',
-  				dataType: 'json'
-			}).done(function(notaMedia){
-				atualizarEstrelasNotaMedia( notaMedia );
-			});
+			
 		});
 	});
 	</script>
