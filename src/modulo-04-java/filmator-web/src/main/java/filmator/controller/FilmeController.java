@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import filmator.dao.AvaliacaoDao;
 import filmator.dao.FilmeDao;
 import filmator.model.Filme;
 import filmator.model.Genero;
@@ -19,6 +20,9 @@ public class FilmeController {
 	
 	@Inject 
 	FilmeDao filmeDao;
+	
+	@Inject
+	AvaliacaoDao avaliacaoDao;
 	
 	@RequestMapping( value = "/filme/cadastro", method = RequestMethod.GET )
 	public String filmeCadastro( Model model ) {
@@ -64,8 +68,10 @@ public class FilmeController {
 	}
 	
 	@RequestMapping( value = "/filme/perfil", method = RequestMethod.GET )
-	public String filmePerfil( Model model, @RequestParam int idFilme ) {
+	public String filmePerfil( HttpSession session, Model model, @RequestParam int idFilme ) {
 		model.addAttribute( "filme", filmeDao.buscarFilme( idFilme ) );
+		Usuario usuario = (Usuario) session.getAttribute( "usuarioLogado" );
+		model.addAttribute( "avaliacaoPessoal", avaliacaoDao.buscarAvaliacaoPessoal( idFilme, usuario.getIdUsuario()));
 		return "perfil";
 	}
 	

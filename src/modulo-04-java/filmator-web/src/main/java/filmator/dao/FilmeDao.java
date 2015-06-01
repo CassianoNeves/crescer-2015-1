@@ -69,6 +69,7 @@ public class FilmeDao {
 					rs.getString( "sinopse" ),
 					rs.getString( "imagem" ), 
 					rs.getInt( "mediaNota" ));
+			filme.setIdFilme( rs.getInt( "idFilme" ) );
 			return filme;
 		}, idFilme);
 		

@@ -10,6 +10,14 @@
 		margin-top: 50px;
 	}
 
+	#mediaNota{
+		margin-bottom: 10px;
+	}
+
+	.star{
+		cursor: pointer;
+	}
+
 	</style>
 </head>
 <body>
@@ -27,7 +35,15 @@
 				</div>
 
 				<span>Ano: {{filme.ano}}</span>
-				<div id="mediaNota"class="row" mediaNota="{{filme.mediaNota}}" alt="Nota média">
+				<div id="mediaNota"class="row" mediaNota="{{filme.mediaNota}}" data-toggle="tooltip" data-placement="left"  title="Nota média: {{filme.mediaNota}}">
+					<img value="1" src="/img/star1.png" width="20px">
+					<img value="2" src="/img/star1.png" width="20px">
+					<img value="3" src="/img/star1.png" width="20px">
+					<img value="4" src="/img/star1.png" width="20px">
+					<img value="5" src="/img/star1.png" width="20px">
+				</div>
+
+				<div id="notaPessoal" value="{{filme.idFilme}}" notaPessoal="{{avaliacaoPessoal.nota}}" class="row" data-toggle="tooltip" data-placement="left" title="Sua nota: {{avaliacaoPessoal.nota}}">
 					<img value="1" class="star" src="/img/star1.png" width="20px">
 					<img value="2" class="star" src="/img/star1.png" width="20px">
 					<img value="3" class="star" src="/img/star1.png" width="20px">
@@ -36,7 +52,7 @@
 				</div>
 
 				<div id="sinopse" class="row">
-					<p>{{filme.sinopse}}</p>
+					<p>{{filme.sinopse}}</p>	
 				</div>
 			</div>
 		</div>
@@ -44,12 +60,58 @@
 	{{> scripts}}
 	<script type="text/javascript">
 	$(function(){
+		atualizarEstrelasNotaMedia( $( '#mediaNota' ).attr('mediaNota') );
+		atualizarEstrelasNotaPessal( $( '#notaPessoal' ).attr('notaPessoal') );
+		$('[data-toggle="tooltip"]').tooltip();
 
-		var mediaNota = $( '#mediaNota' ).attr('mediaNota');
+		function atualizarEstrelasNotaMedia( mediaNota ){
+			var self = $( '#mediaNota' ).find('img[value="'+mediaNota+'"]')
+			self.prevAll().attr('src', '/img/star0.png');
+			self.nextAll().attr('src', '/img/star1.png');
+			self.attr('src', '/img/star0.png');
+			self.parent().attr('data-original-title', 'Nota média: '+ mediaNota);
+		}
 
-		$( '#mediaNota' ).find('img[value="'+mediaNota+'"]')
-		.attr('src', '/img/star0.png')
-		.prevAll().attr('src', '/img/star0.png');
+		function atualizarEstrelasNotaPessal( notaPessoal ){
+			$( '#notaPessoal' ).find('img[value="'+notaPessoal+'"]')
+			.attr('src', '/img/star0.png')
+			.prevAll().attr('src', '/img/star0.png');
+		}
+
+		$('.star').hover(function(){
+			if( $( this ).attr('src') === '/img/star1.png'){
+				$( this ).attr('src', '/img/star3.jpg');
+			}
+		}, function(){
+			if( $( this ).attr('src') === '/img/star3.jpg'){
+				$( this ).attr('src', '/img/star1.png');
+			}
+		});
+
+		$('.star').click(function(){
+			var self = $(this);
+			self.prevAll().attr('src', '/img/star0.png');
+			self.nextAll().attr('src', '/img/star1.png');
+			self.attr('src', '/img/star0.png');
+			
+			var nota = $( this ).attr('value');
+			self.parent().attr('data-original-title', 'Sua nota: '+ nota);
+			var filme = $( this ).parent().attr('value');
+
+			$.ajax({
+				url: '/filme/avaliar?nota=' + nota + '&idFilme=' + filme,
+				type: 'POST'
+			});
+
+			$.ajax({
+				url: '/filme/atualizarMedia?idFilme=' + filme,
+				type: 'GET',
+				contentType: 'json',
+  				dataType: 'json'
+			}).done(function(notaMedia){
+				atualizarEstrelasNotaMedia( notaMedia );
+			});
+		});
 	});
 	</script>
 </body>

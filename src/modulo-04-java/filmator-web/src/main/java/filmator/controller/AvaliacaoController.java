@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,14 @@ public class AvaliacaoController {
 		Avaliacao avaliacao = new Avaliacao( usuario.getIdUsuario(), idFilme, nota );
 		avaliacaoDao.inserir( avaliacao );
 		return "ok";
+	}
+	
+	@ResponseBody
+	@RequestMapping( value = "/filme/atualizarMedia", method = RequestMethod.GET )
+	public int buscarNotaMedia( Model model, @RequestParam int idFilme ){
+		int notaMedia = avaliacaoDao.buscarNotaMediaPorFilme( idFilme );
+		String media = "NotaMedia: " + notaMedia;
+		return notaMedia;
 	}
 
 }
