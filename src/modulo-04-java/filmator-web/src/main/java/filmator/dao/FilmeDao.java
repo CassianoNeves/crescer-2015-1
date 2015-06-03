@@ -5,12 +5,15 @@ import java.util.List;
 
 
 
+
 import javax.inject.Inject;
+
 
 
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
 
 
 
@@ -78,6 +81,16 @@ public class FilmeDao {
 	
 	public void excluir( int idFilme ){
 		jdbcTemplate.update( "UPDATE FILME SET SITUACAO = 'I' WHERE IDFILME = ?", idFilme );
+	}
+	
+	public int buscarFilmePeloNome( String nome ){
+		
+		List<Integer> filmes = jdbcTemplate.query( "SELECT * FROM FILME WHERE NOME = ?", (ResultSet rs, int rowNum) ->{
+			return rs.getInt( "idFilme" );
+		},
+		nome);
+		
+		return filmes.get( 0 );
 	}
 }
  

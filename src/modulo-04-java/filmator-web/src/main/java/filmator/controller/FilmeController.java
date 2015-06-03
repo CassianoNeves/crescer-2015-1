@@ -1,5 +1,7 @@
 package filmator.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import filmator.dao.AvaliacaoDao;
 import filmator.dao.FilmeDao;
@@ -73,6 +76,18 @@ public class FilmeController {
 		Usuario usuario = (Usuario) session.getAttribute( "usuarioLogado" );
 		model.addAttribute( "avaliacaoPessoal", avaliacaoDao.buscarAvaliacaoPessoal( idFilme, usuario.getIdUsuario()));
 		return "perfil";
+	}
+	
+	@ResponseBody
+	@RequestMapping( value = "/filme/buscarPeloNome", method = RequestMethod.GET )
+	public int buscarFilmePeloNome( @RequestParam String nome ) {
+		return filmeDao.buscarFilmePeloNome( nome );
+	}
+	
+	@ResponseBody
+	@RequestMapping( value = "/filme/buscarJSON", method = RequestMethod.GET )
+	public List<Filme> buscarFilmes() {
+		return filmeDao.buscaTodosFilmes();
 	}
 	
 }
