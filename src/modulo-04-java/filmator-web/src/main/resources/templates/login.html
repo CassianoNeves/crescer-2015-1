@@ -45,9 +45,10 @@
 						<input type="submit" value="Entrar" class="btn btn-primary">
 					</div>
 				</form>
+				<br><br>
 				{{#erro}}
 				<div class="row">
-					<h2 class="vermelho">{{erro}}</h2>
+					<div class="alert alert-danger text-center" role="alert">{{erro}}</div>
 				</div>
 				{{/erro}}
 			</div>
