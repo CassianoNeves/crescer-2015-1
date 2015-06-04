@@ -10,11 +10,13 @@
 		}
 
 		.img-filme{
-			padding: 15px 15px;
+			margin: 20px;
+
 		}
 	</style>
 </head>
 <body>
+	
 	<div class="container">
 		{{> navbar}}
 		<br><br>
@@ -25,9 +27,9 @@
 		
 		<div class="row text-center">
 			{{#filmes}}
-			<div class="col-xs-3 col-md-3 col-lg-3 img-filme">
-				<a href="/filme/perfil?idFilme={{idFilme}}"><img src="{{imagem}}" width="80%" class="img-rounded"></a>
-			</div>
+			
+				<a href="/filme/perfil?idFilme={{idFilme}}"><img src="{{imagem}}" width="220" class="img-rounded img-filme"></a>
+			
 			{{/filmes}}
 		</div>
 
