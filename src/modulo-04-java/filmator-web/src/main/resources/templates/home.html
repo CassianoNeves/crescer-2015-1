@@ -9,6 +9,10 @@
 			padding: 20px 20px;
 		}
 
+		.block-inline{
+			display: inline-block;
+			margin: 20px;
+		}
 		
 	</style>
 </head>
@@ -22,11 +26,11 @@
 			<h1 class="titulo">Filmator</h1>	
 		</div>
 		
-		<div class="row text-center">
+		<div class="text-center">
 			{{#filmes}}
-			<div class="col-xs-3 col-md-3">
-				<a class="thumbnail" href="/filme/perfil?idFilme={{idFilme}}"><img src="{{imagem}}" width="100%" class="img-rounded img-filme "></a>
-			</div>
+			
+				<div class="block-inline"><a class="thumbnail" href="/filme/perfil?idFilme={{idFilme}}"><img src="{{imagem}}" width="230px" class="img-rounded img-filme "></a></div>
+			
 			{{/filmes}}
 		</div>
 
